@@ -1,9 +1,11 @@
-const ComponentPage = () => {
-    return (
-        <div>
-            <h1>Component Page</h1>
-        </div>
-    );
-};
+import React from 'react'
 
-export default ComponentPage;
+const page = () => {
+    return (
+        <div className='p-32'>
+            Component Page
+        </div>
+    )
+}
+
+export default page

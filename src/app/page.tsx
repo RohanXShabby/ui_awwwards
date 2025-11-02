@@ -9,6 +9,9 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Landing />
+      <div className="h-screen">
+
+      </div>
     </main>
   );
 }

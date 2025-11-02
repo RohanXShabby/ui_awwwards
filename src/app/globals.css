@@ -42,6 +42,10 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: system-ui, sans-serif;
+}
+
+/* Enable transitions only after theme is applied to avoid flash */
+html.theme-ready body {
   transition: background 0.25s ease, color 0.25s ease;
 }
 

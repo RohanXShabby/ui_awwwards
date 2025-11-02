@@ -33,9 +33,11 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {`
             try {
+              var d = document.documentElement;
               var t = localStorage.getItem('theme');
-              if (t) document.documentElement.setAttribute('data-theme', t);
-            } catch (e) {}
+              if (t) d.setAttribute('data-theme', t);
+              d.classList.add('theme-ready');
+            } catch (e) { document.documentElement.classList.add('theme-ready'); }
           `}
         </Script>
         <ThemeProvider>

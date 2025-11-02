@@ -1,3 +1,4 @@
+"use client"
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation"
 import { Button } from "./ui/button"
 import Link from "next/link"
@@ -5,10 +6,77 @@ import { FaCode } from "react-icons/fa6"
 import { AiOutlineBgColors } from "react-icons/ai"
 import { BsFillLightningChargeFill } from "react-icons/bs"
 import { FeatureCard } from "./ui/feature_card"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const Landing = () => {
+    const heroTitleRef = useRef<HTMLHeadingElement | null>(null)
+    const heroDescRef = useRef<HTMLParagraphElement | null>(null)
+    const buttonsRef = useRef<HTMLDivElement | null>(null)
+    const featuresRef = useRef<HTMLDivElement | null>(null)
+
+    useEffect(() => {
+        if (typeof window === "undefined") return
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (reduce) return
+        gsap.registerPlugin(ScrollTrigger)
+        const ctx = gsap.context(() => {
+            if (heroTitleRef.current) {
+                gsap.from(heroTitleRef.current, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    clearProps: "opacity,transform",
+                })
+            }
+            if (heroDescRef.current) {
+                gsap.from(heroDescRef.current, {
+                    y: 14,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: 0.1,
+                    ease: "power3.out",
+                    clearProps: "opacity,transform",
+                })
+            }
+            if (buttonsRef.current) {
+                gsap.from(buttonsRef.current.children, {
+                    y: 12,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.08,
+                    delay: 0.2,
+                    ease: "power3.out",
+                    clearProps: "opacity,transform",
+                })
+            }
+            if (featuresRef.current) {
+                const items = Array.from(featuresRef.current.children) as HTMLElement[]
+                gsap.set(items, { opacity: 0, y: 16 })
+                gsap.to(items, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.08,
+                    ease: "power3.out",
+                    overwrite: "auto",
+                    scrollTrigger: {
+                        trigger: featuresRef.current,
+                        start: "top 90%",
+                        once: true,
+                    },
+                    clearProps: "opacity,transform",
+                })
+            }
+        })
+        return () => ctx.revert()
+    }, [])
+
     return (
         <main className="relative min-h-screen w-full overflow-hidden">
+
             {/* Interactive Background Animation Layer */}
             <div className="absolute inset-0 opacity-40">
                 <BackgroundGradientAnimation />
@@ -19,16 +87,16 @@ const Landing = () => {
                 {/* Hero Section */}
                 <section className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
                     <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <h1 ref={heroTitleRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                             Beautiful React Components
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+                        <p ref={heroDescRef} className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
                             Copy-paste ready components built with React, Tailwind CSS, and modern web technologies.
                             No dependencies, fully customizable, and production-ready.
                         </p>
 
                         {/* CTA Buttons - Enable pointer events */}
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 pointer-events-auto">
+                        <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 pointer-events-auto">
                             <Button size="lg" asChild className="w-full sm:w-auto">
                                 <Link href="/component">
                                     Explore Components
@@ -46,7 +114,7 @@ const Landing = () => {
                 {/* Features Section */}
                 <section className="px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 md:pb-20">
                     <div className="max-w-6xl mx-auto">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div ref={featuresRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                             <FeatureCard
                                 icon={<FaCode className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />}
                                 title="Easy Integration"
@@ -69,6 +137,5 @@ const Landing = () => {
         </main>
     )
 }
-
 
 export default Landing
