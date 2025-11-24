@@ -1,6 +1,7 @@
 import React from 'react';
 import { CodeViewer } from '../CodeViewer';
 import { Search, Mail } from 'lucide-react';
+import { ComponentPreview } from '../ComponentPreview';
 
 export const InputDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
@@ -51,7 +52,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = "Input";`;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-12">
+    <div className="w-full mx-auto space-y-8 pb-12">
       <div>
         <h1 className="text-3xl font-bold text-foreground mb-4">Input</h1>
         <p className="text-muted-foreground text-lg">
@@ -60,39 +61,39 @@ Input.displayName = "Input";`;
       </div>
 
       {/* Preview Area */}
-      <div className="border border-border rounded-xl overflow-hidden">
-        <div className="bg-secondary/30 p-4 border-b border-border flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Preview</span>
-        </div>
-        <div className="p-10 bg-background flex flex-col gap-6 max-w-md mx-auto">
-          {/* Simulation */}
-          <div className="w-full">
-            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Email Address</label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
-                <Mail className="w-4 h-4" />
+      <ComponentPreview>
+        <div className="rounded-xl overflow-hidden">
+          <div className="p-10 bg-background flex flex-col gap-6 max-w-md mx-auto">
+            {/* Simulation */}
+            <div className="w-full">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Email Address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input type="email" placeholder="you@example.com" className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
               </div>
-              <input type="email" placeholder="you@example.com" className="w-full bg-secondary/20 border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+            </div>
+
+            <div className="w-full">
+              <label className="block text-sm border-none outline-none font-medium text-muted-foreground mb-1.5">Search</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
+                  <Search className="w-4 h-4" />
+                </div>
+                <input type="text" placeholder="Search documentation..." className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Username</label>
+              <input type="text" defaultValue="invalid_user" className="w-full bg-secondary/20 border border-red-500/50 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-transparent px-3 py-2.5" />
+              <p className="mt-1.5 text-sm text-red-500">Username is already taken.</p>
             </div>
           </div>
-
-          <div className="w-full">
-            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Search</label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
-                <Search className="w-4 h-4" />
-              </div>
-              <input type="text" placeholder="Search documentation..." className="w-full bg-secondary/20 border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
-            </div>
-          </div>
-
-          <div className="w-full">
-            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Username</label>
-            <input type="text" defaultValue="invalid_user" className="w-full bg-secondary/20 border border-red-500/50 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-transparent px-3 py-2.5" />
-            <p className="mt-1.5 text-sm text-red-500">Username is already taken.</p>
-          </div>
         </div>
-      </div>
+      </ComponentPreview>
+
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>

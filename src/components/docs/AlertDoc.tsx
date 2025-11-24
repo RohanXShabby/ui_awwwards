@@ -66,34 +66,31 @@ export const Alert = ({
 };`;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="w-full mx-auto space-y-8 pb-12">
 
       {/* Header Section */}
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-foreground tracking-tight">Alert</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-          Displays a prominent callout for user attention, providing contextual feedback regarding user actions or system states.
+      <div>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Alert</h1>
+        <p className="text-muted-foreground text-lg">
+          A graphical representation of a user or entity, often with a status indicator.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
-        <button>aLERT bOX pREVIEW</button>
+        <button>Alert box preview</button>
       </ComponentPreview>
 
       {/* CLI Installation */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add alert" language="bash" title="Terminal" />
+      <div>
+        <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
+        <CodeViewer code="npx next-forge-ui add avatar" language="bash" title="Terminal" />
       </div>
 
       {/* Manual Installation */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Manual Installation</h2>
-        <p className="text-muted-foreground text-sm">
-          Copy and paste the following code into <code className="text-accent">components/Alert.tsx</code>
-        </p>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Alert.tsx" />
+      <div>
+        <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
+        <CodeViewer code={exampleCode} language="tsx" title="components/Avatar.tsx" />
       </div>
 
       {/* API Reference */}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CodeViewer } from '../CodeViewer';
+import { ComponentPreview } from '../ComponentPreview';
 
 export const AvatarDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
@@ -59,7 +60,7 @@ export const Avatar = ({
 };`;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-12">
+    <div className="w-full mx-auto space-y-8 pb-12">
       <div>
         <h1 className="text-3xl font-bold text-foreground mb-4">Avatar</h1>
         <p className="text-muted-foreground text-lg">
@@ -68,39 +69,17 @@ export const Avatar = ({
       </div>
 
       {/* Preview Area */}
-      <div className="border border-border rounded-xl overflow-hidden">
-        <div className="bg-secondary/30 p-4 border-b border-border flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Preview</span>
-        </div>
-        <div className="p-10 bg-background flex flex-wrap gap-8 items-center justify-center">
-          {/* Simulation of Avatar component */}
-          <div className="relative inline-block">
-            <div className="w-14 h-14 rounded-full overflow-hidden bg-secondary border border-border flex items-center justify-center text-muted-foreground font-medium">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User" className="w-full h-full object-cover" />
-            </div>
-            <span className="absolute bottom-0 right-0 block rounded-full ring-2 ring-background bg-green-500 w-3.5 h-3.5" />
-          </div>
+      <ComponentPreview>
+        Avatar Code Preview
+      </ComponentPreview>
 
-          <div className="relative inline-block">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-semibold">
-              JD
-            </div>
-            <span className="absolute bottom-0 right-0 block rounded-full ring-2 ring-background bg-red-500 w-2.5 h-2.5" />
-          </div>
-
-          <div className="relative inline-block">
-            <div className="w-8 h-8 rounded-full overflow-hidden bg-secondary border border-border flex items-center justify-center text-muted-foreground text-xs">
-              AI
-            </div>
-          </div>
-        </div>
-      </div>
-
+      {/* CLI Installation */}  
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
         <CodeViewer code="npx next-forge-ui add avatar" language="bash" title="Terminal" />
       </div>
 
+      {/* Manual Installation */}
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
         <CodeViewer code={exampleCode} language="tsx" title="components/Avatar.tsx" />

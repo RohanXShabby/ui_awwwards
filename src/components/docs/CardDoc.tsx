@@ -1,5 +1,7 @@
 import React from 'react';
 import { CodeViewer } from '../CodeViewer';
+import { Component } from 'lucide-react';
+import { ComponentPreview } from '../ComponentPreview';
 
 export const CardDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
@@ -34,7 +36,7 @@ export const Card = ({ title, description, footer, children, className = '' }: C
 };`;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-12">
+    <div className="w-full mx-auto space-y-8 pb-12">
       <div>
         <h1 className="text-3xl font-bold text-foreground mb-4">Card</h1>
         <p className="text-muted-foreground text-lg">
@@ -43,26 +45,26 @@ export const Card = ({ title, description, footer, children, className = '' }: C
       </div>
 
       {/* Preview Area */}
-      <div className="border border-border rounded-xl overflow-hidden">
-        <div className="bg-secondary/30 p-4 border-b border-border flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Preview</span>
-        </div>
-        <div className="p-10 bg-background flex justify-center">
-          {/* Simulation */}
-          <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm max-w-sm w-full">
-            <div className="px-6 py-5 border-b border-border">
-              <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Manage your account preferences and security.</p>
-            </div>
-            <div className="px-6 py-5">
-              <p className="text-muted-foreground text-sm">Your account is currently active. You can update your profile information below.</p>
-            </div>
-            <div className="px-6 py-4 bg-secondary/20 border-t border-border flex justify-end">
-              <button className="text-sm font-medium text-primary hover:text-primary/80">Edit Profile</button>
+      <ComponentPreview>
+        <div className="rounded-xl overflow-hidden">
+          <div className="p-10 bg-background flex justify-center">
+            {/* Simulation */}
+            <div className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm w-full">
+              <div className="px-6 py-5">
+                <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Manage your account preferences and security.</p>
+              </div>
+              <div className="px-6 py-5">
+                <p className="text-muted-foreground text-sm">Your account is currently active. You can update your profile information below.</p>
+              </div>
+              <div className="px-6 py-4 bg-secondary/20  flex justify-end">
+                <button className="text-sm font-medium text-primary hover:text-primary/80">Edit Profile</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </ComponentPreview>
+
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>

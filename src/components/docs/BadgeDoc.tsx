@@ -1,5 +1,6 @@
 import React from 'react';
 import { CodeViewer } from '../CodeViewer';
+import { ComponentPreview } from '../ComponentPreview';
 
 export const BadgeDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
@@ -44,7 +45,7 @@ export const Badge = ({
 };`;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-12">
+    <div className="w-full mx-auto space-y-8 pb-12">
       <div>
         <h1 className="text-3xl font-bold text-foreground mb-4">Badge</h1>
         <p className="text-muted-foreground text-lg">
@@ -53,29 +54,27 @@ export const Badge = ({
       </div>
 
       {/* Preview Area */}
-      <div className="border border-border rounded-xl overflow-hidden">
-        <div className="bg-secondary/30 p-4 border-b border-border flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Preview</span>
-        </div>
-        <div className="p-10 bg-background flex flex-wrap gap-4 items-center justify-center">
+      <ComponentPreview>
+        <div className="flex justify-between rounded-xl overflow-hidden">
           {/* Simulation */}
-          <span className="inline-flex items-center font-medium rounded-full border bg-primary text-primary-foreground border-transparent text-xs px-2.5 py-0.5">
+          <span className="inline-flex items-center font-medium rounded-full  bg-primary text-primary-foreground text-xs px-2.5 py-0.5">
             New Feature
           </span>
-          <span className="inline-flex items-center font-medium rounded-full border bg-secondary text-secondary-foreground border-border text-xs px-2.5 py-0.5">
+          <span className="inline-flex items-center font-medium rounded-full  bg-background text-foreground text-xs px-2.5 py-0.5">
             Documentation
           </span>
-          <span className="inline-flex items-center font-medium rounded-full border bg-transparent text-muted-foreground border-border text-xs px-2.5 py-0.5">
+          <span className="inline-flex items-center font-medium rounded-full  bg-transparent text-muted-foreground  text-xs px-2.5 py-0.5">
             Outline
           </span>
-          <span className="inline-flex items-center font-medium rounded-full border bg-green-500/10 text-green-400 border-green-500/20 text-xs px-2.5 py-0.5">
+          <span className="inline-flex items-center font-medium rounded-full  bg-green-500/10 text-green-400 text-xs px-2.5 py-0.5">
             Completed
           </span>
-          <span className="inline-flex items-center font-medium rounded-full border bg-red-500/10 text-red-400 border-red-500/20 text-xs px-2.5 py-0.5">
+          <span className="inline-flex items-center font-medium rounded-full  bg-red-500/10 text-red-400 - text-xs px-2.5 py-0.5">
             Failed
           </span>
         </div>
-      </div>
+      </ComponentPreview>
+
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>

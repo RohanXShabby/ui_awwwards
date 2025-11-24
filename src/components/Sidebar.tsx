@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Category } from '../types';
 import { CATEGORY_METADATA } from '../registry';
+import { cn } from '@/lib/utils';
 
 interface LeftSidebarProps {
   activeCategory: Category;
@@ -8,40 +10,89 @@ interface LeftSidebarProps {
 }
 
 export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSelectCategory }) => {
-  const navItemClass = (isActive: boolean) => `
-    flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer mb-1
-    ${isActive
-      ? 'bg-primary/10 text-primary border-r-2 border-primary'
-      : 'text-muted-foreground hover:bg-accent hover:text-foreground'}
-  `;
+  const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
+
+  // 🎨 STYLING
+  const hoverClass = "bg-accent/50";
+  const activeClass = "bg-accent border-l border-background shadow-sm";
 
   return (
-    <div className="h-full flex flex-col overflow-y-auto py-6">
+    <div className="h-full flex flex-col overflow-y-auto py-6 bg-background ">
+      {/* Categories Header */}
       <div className="px-6 mb-4">
-        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Categories</h3>
+        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+          Categories
+        </h3>
       </div>
 
-      <nav className="px-4">
+      {/* Navigation List */}
+      <nav
+        className="px-3 space-y-1"
+        onMouseLeave={() => setHoveredCategory(null)}
+      >
         {CATEGORY_METADATA.map((meta) => {
           const Icon = meta.icon as React.ComponentType<{ className: string }>;
+          const isActive = activeCategory === meta.id;
+          const isHovered = hoveredCategory === meta.id;
+
           return (
-            <div
+            <button
               key={meta.id}
-              className={navItemClass(activeCategory === meta.id)}
               onClick={() => onSelectCategory(meta.id)}
+              onMouseEnter={() => setHoveredCategory(meta.id)}
+              className={cn(
+                "relative flex items-center gap-3 px-4 py-3 w-full text-left rounded-xl transition-colors duration-200 outline-none group z-10",
+                isActive ? "text-primary font-medium" : "text-muted-foreground font-normal"
+              )}
             >
-              <Icon className="w-4 h-4" />
-              <span className="text-sm font-medium">{meta.label}</span>
-            </div>
+              {/* 1. SLIDING HOVER BACKGROUND*/}
+              {isHovered && (
+                <motion.div
+                  layoutId="hover-pill"
+                  className={cn("absolute inset-0 rounded-xl z-[-1]", hoverClass)}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30
+                  }}
+                />
+              )}
+
+              {/* 2. ACTIVE BACKGROUND*/}
+              {isActive && (
+                <motion.div
+                  layoutId="active-pill"
+                  className={cn("absolute inset-0 rounded-xl z-[-1]", activeClass)}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+
+              {/* 3. ICON & TEXT */}
+              <span className="relative z-10 flex items-center gap-3">
+                <Icon className={cn(
+                  "w-4 h-4 transition-transform duration-300",
+                  isHovered ? "scale-110 text-foreground" : "",
+                  isActive ? "text-primary" : "text-muted-foreground"
+                )} />
+                <span className={cn(
+                  "text-sm transition-colors",
+                  isHovered && !isActive ? "text-foreground" : ""
+                )}>
+                  {meta.label}
+                </span>
+              </span>
+            </button>
           );
         })}
       </nav>
 
-      <div className="mt-auto px-6 pt-6">
-        <div className="p-4 bg-secondary/50 rounded-lg border border-card-border">
-          <p className="text-xs text-muted-foreground mb-2">Missing a category?</p>
-          <button className="text-xs text-primary hover:text-primary/80 font-medium">
-            Request a category &rarr;
+      {/* Footer Request Box */}
+      <div className="mt-auto px-4 pt-6">
+        <div className="p-4 bg-linear-to-br from-secondary/50 to-background rounded-xl">
+          <p className="text-xs text-muted-foreground mb-3">Missing a specific component?</p>
+          <button className="w-full py-2 text-xs font-semibold text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors flex items-center justify-start">
+            Request Category
+            <span className="text-[10px] opacity-70">↗</span>
           </button>
         </div>
       </div>
