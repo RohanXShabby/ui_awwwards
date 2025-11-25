@@ -2,7 +2,7 @@
 
 import DecryptedText from "@/content/decrypt_text/decrypt";
 import { ParallaxCards } from "@/content/paralax_card/parallax_card";
-import Parallax_card from "@/usage/paralax_card/parallax_card";
+import Parallax_card from "@/components/demos/parallax_card";
 
 type PlaceholderCardProps = {
     index: number;

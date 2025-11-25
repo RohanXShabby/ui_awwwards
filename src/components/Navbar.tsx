@@ -84,7 +84,7 @@ const Navbar = () => {
                                     isActive ? "text-white" : "text-muted-foreground hover:text-foreground"
                                 )}
                             >
-                                {isHovered && !isActive && (
+                                {isHovered && (
                                     <motion.div
                                         layoutId="navbar-hover"
                                         className="absolute inset-0 bg-white/10 rounded-full z-0"

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Category, ComponentId } from './types';
-import { ButtonDoc } from './components/docs/ButtonDoc';
-import { InputDoc } from './components/docs/InputDoc';
-import { CardDoc } from './components/docs/CardDoc';
-import { AvatarDoc } from './components/docs/AvatarDoc';
-import { BadgeDoc } from './components/docs/BadgeDoc';
-import { AlertDoc } from './components/docs/AlertDoc';
+import { ButtonDoc } from './components/demos/ButtonDoc';
+import { InputDoc } from './components/demos/InputDoc';
+import { CardDoc } from './components/demos/CardDoc';
+import { AvatarDoc } from './components/demos/AvatarDoc';
+import { BadgeDoc } from './components/demos/BadgeDoc';
+import { AlertDoc } from './components/demos/AlertDoc';
 import { ToggleLeft, Terminal, CreditCard, MessageSquare } from 'lucide-react';
 
 export interface ComponentEntry {
