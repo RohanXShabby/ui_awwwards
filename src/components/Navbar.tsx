@@ -40,7 +40,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 inset-x-0 z-40 flex flex-col items-center pointer-events-none">
+        <nav className="fixed top-0 inset-x-0 z-40  flex flex-col items-center pointer-events-none">
 
             <div className={cn(
                 "relative flex items-center justify-between bg-background/60 backdrop-blur-2xl pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",

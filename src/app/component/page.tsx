@@ -37,7 +37,7 @@ const Page = () => {
     };
 
     return (
-        <div className="relative w-full h-full flex flex-col overflow-hidden bg-background text-foreground">
+        <div className="relative w-full h-screen pt-[8vh] flex flex-col overflow-hidden bg-background text-foreground">
 
             {/* --- Mobile Header --- */}
             <MobileHeader
@@ -48,13 +48,12 @@ const Page = () => {
             />
 
             {/* --- Main Content Layout --- */}
-            <div className="flex-1 flex min-h-0 relative">
+            <div className="flex-1 flex min-h-0">
 
                 {/* --- LEFT SIDEBAR --- */}
                 <aside className={`
-                    fixed inset-y-0 left-0 z-100 lg:w-72 lg:static lg:z-auto
-                    bg-background border-r border-card-border
-                    flex flex-col shadow-2xl lg:shadow-none
+                    fixed inset-y-0 left-0 z-150 lg:w-72 lg:static lg:z-auto
+                    bg-background flex flex-col shadow-2xl lg:shadow-none
                     transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
                     ${showLeftSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 `}>
@@ -86,8 +85,7 @@ const Page = () => {
                 {/* --- RIGHT SIDEBAR --- */}
                 <aside className={`
                     fixed inset-y-0 right-0 z-100 lg:w-72 lg:static lg:z-auto
-                    bg-background border-l border-card-border
-                    flex flex-col shadow-2xl lg:shadow-none
+                    bg-background flex flex-col shadow-2xl lg:shadow-none
                     transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
                     ${showRightSidebar ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
                 `}>

@@ -100,17 +100,18 @@ const Landing = () => {
             </div>
 
             {/* Gradient Overlay / Vignette */}
-            <div className="absolute inset-0 z-1 pointer-events-none bg-background mask-[radial-gradient(ellipse_at_center,transparent_10%,black_75%)]" />
+            <div className="absolute inset-0 z-1 pointer-events-none bg-background mask-[linear-gradient(to_bottom,black_0%,transparent_10%,transparent_90%,black_100%)]" />
+
 
             {/* Content Container */}
             <div className="relative z-30 flex flex-col min-h-screen pointer-events-none">
 
                 {/* Hero Section */}
                 <section className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
-                    <div className="max-w-7xl mx-auto  w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                    <div className="max-w-7xl mx-auto  w-full grid pt-6 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
                         {/* Left Column: Text & CTA */}
-                        <div className="text-center lg:text-left space-y-6 sm:space-y-8 order-2 lg:order-1">
+                        <div className="text-center lg:text-left text-balance space-y-6 sm:space-y-8 order-2 lg:order-1">
                             <h1 ref={heroTitleRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                                 Beautiful React <br className="hidden lg:block" />
                                 <span className="text-primary">Components</span>
@@ -147,7 +148,7 @@ const Landing = () => {
                                 className="w-full max-w-lg"
                                 align="center"
                             >
-                                <div>Some Interactive Component</div>
+                                <div className="m-auto w-fit">Some Interactive Component</div>
                             </ComponentPreview>
                         </div>
 

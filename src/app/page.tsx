@@ -10,7 +10,6 @@ export default function Home() {
     <main className="min-h-screen">
       <Landing />
       <div className="h-screen">
-
       </div>
     </main>
   );

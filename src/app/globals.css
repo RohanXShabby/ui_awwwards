@@ -111,6 +111,13 @@ html.theme-ready body {
   }
 }
 
+.dir-rtl {
+  direction: rtl;
+}
+
+.dir-ltr {
+  direction: ltr;
+}
 
 ::selection{
   background: #FE7743;

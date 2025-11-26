@@ -115,7 +115,7 @@ export const Alert = ({
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-card-bg/40 border-b border-card-border/30 text-xs font-semibold text-muted-foreground uppercase">
+                    <tr className="bg-card-bg border-b border-card-border/30 text-sm font-semibold text-muted-foreground uppercase">
                       <th className="py-4 px-6 whitespace-nowrap">Prop</th>
                       <th className="py-4 px-6 whitespace-nowrap">Type</th>
                       <th className="py-4 px-6 whitespace-nowrap">Default</th>
