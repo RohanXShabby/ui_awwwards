@@ -1,86 +1,91 @@
 import React from 'react';
-import { CodeViewer } from '../CodeViewer';
-import { Loader2, Mail, AlertCircle, Info, CheckCircle2, XCircle } from 'lucide-react';
-import { ComponentPreview } from '../ComponentPreview';
+import { CodeViewer } from '../../CodeViewer';
+import { ComponentPreview } from '../../ComponentPreview';
 
-export const ButtonDoc: React.FC = () => {
+export const AvatarDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
-import { Loader2 } from 'lucide-react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+interface AvatarProps {
+  src?: string;
+  alt?: string;
+  fallback: string;
   size?: 'sm' | 'md' | 'lg';
-  isLoading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  status?: 'online' | 'offline' | 'busy';
+  className?: string;
 }
 
-export const Button = ({
-  children,
-  variant = 'primary',
-  size = 'md',
-  isLoading,
-  leftIcon,
-  rightIcon,
-  className = '',
-  disabled,
-  ...props
-}: ButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:pointer-events-none rounded-lg";
+export const Avatar = ({ 
+  src, 
+  alt, 
+  fallback, 
+  size = 'md', 
+  status,
+  className = '' 
+}: AvatarProps) => {
   
-  const variants = {
-    primary: "bg-white text-black hover:bg-slate-200 focus:ring-white",
-    secondary: "bg-slate-800 text-white hover:bg-slate-700 focus:ring-slate-500",
-    outline: "border border-slate-700 text-slate-200 hover:bg-slate-800 focus:ring-slate-500",
-    ghost: "text-slate-200 hover:bg-slate-800 hover:text-white focus:ring-slate-500",
+  const sizeClasses = {
+    sm: "w-8 h-8 text-xs",
+    md: "w-10 h-10 text-sm",
+    lg: "w-14 h-14 text-base",
   };
 
-  const sizes = {
-    sm: "h-8 px-3 text-xs",
-    md: "h-10 px-4 text-sm",
-    lg: "h-12 px-6 text-base",
+  const statusColors = {
+    online: "bg-green-500",
+    offline: "bg-slate-500",
+    busy: "bg-red-500",
   };
 
   return (
-    <button
-      className={\`\${baseStyles} \${variants[variant]} \${sizes[size]} \${className}\`}
-      disabled={disabled || isLoading}
-      {...props}
-    >
-      {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-      {!isLoading && leftIcon && <span className="mr-2">{leftIcon}</span>}
-      {children}
-      {!isLoading && rightIcon && <span className="ml-2">{rightIcon}</span>}
-    </button>
+    <div className={\`relative inline-block \${className}\`}>
+      <div className={\`
+        \${sizeClasses[size]} 
+        rounded-full overflow-hidden bg-slate-800 border border-slate-700
+        flex items-center justify-center text-slate-300 font-medium
+      \`}>
+        {src ? (
+          <img src={src} alt={alt || fallback} className="w-full h-full object-cover" />
+        ) : (
+          <span>{fallback}</span>
+        )}
+      </div>
+      {status && (
+        <span className={\`
+          absolute bottom-0 right-0 block rounded-full ring-2 ring-slate-950
+          \${statusColors[status]}
+          \${size === 'lg' ? 'w-3.5 h-3.5' : 'w-2.5 h-2.5'}
+        \`} />
+      )}
+    </div>
   );
 };`;
 
   return (
-    <div className="w-full  mx-auto space-y-8 pb-12">
+    <div className="w-full mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">Button</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Avatar</h1>
         <p className="text-muted-foreground text-lg">
-          An interactive element used to trigger actions. Includes support for variants, sizes, icons, and loading states.
+          A graphical representation of a user or entity, often with a status indicator.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
-        <button>Click ME</button>
+        Avatar Code Preview
       </ComponentPreview>
 
+      {/* CLI Installation */}  
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add button" language="bash" title="Terminal" />
+        <CodeViewer code="npx next-forge-ui add avatar" language="bash" title="Terminal" />
       </div>
 
+      {/* Manual Installation */}
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Button.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="components/Avatar.tsx" />
       </div>
 
       {/* API Reference */}
-
       <div className="space-y-8 pt-6">
         <h2 className="text-2xl font-semibold text-foreground">API Reference</h2>
 

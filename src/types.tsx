@@ -15,6 +15,7 @@ export enum Category {
 }
 
 export enum ComponentId {
+    DECRYPT = 'DECRYPT',
     BUTTON = 'BUTTON',
     INPUT = 'INPUT',
     CARD = 'CARD',

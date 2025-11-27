@@ -39,7 +39,7 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
                     align === 'start' && "block",
                     align === 'end' && "flex flex-col items-end"
                 )}>
-                    <div className="w-full max-w-2xl mx-auto">
+                    <div className="w-fit max-w-2xl mx-auto">
                         {children}
                     </div>
                 </div>

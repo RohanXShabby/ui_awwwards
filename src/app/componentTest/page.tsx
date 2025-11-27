@@ -1,7 +1,7 @@
 "use client";
 
-import DecryptedText from "@/content/decrypt_text/decrypt";
-import { ParallaxCards } from "@/content/paralax_card/parallax_card";
+import DecryptedText from "@/content/Actions/decrypt";
+import { ParallaxCards } from "@/content/Cards/parallax_card";
 import Parallax_card from "@/components/demos/parallax_card";
 
 type PlaceholderCardProps = {

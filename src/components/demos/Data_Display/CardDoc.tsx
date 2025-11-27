@@ -1,94 +1,65 @@
 import React from 'react';
-import { CodeViewer } from '../CodeViewer';
-import { Search, Mail } from 'lucide-react';
-import { ComponentPreview } from '../ComponentPreview';
+import { CodeViewer } from '../../CodeViewer';
+import { Component } from 'lucide-react';
+import { ComponentPreview } from '../../ComponentPreview';
 
-export const InputDoc: React.FC = () => {
+export const CardDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
-  leftIcon?: React.ReactNode;
+interface CardProps {
+  title?: string;
+  description?: string;
+  footer?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, leftIcon, className = '', ...props }, ref) => {
-    return (
-      <div className="w-full">
-        {label && (
-          <label className="block text-sm font-medium text-slate-300 mb-1.5">
-            {label}
-          </label>
-        )}
-        <div className="relative">
-          {leftIcon && (
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-              {leftIcon}
-            </div>
-          )}
-          <input
-            ref={ref}
-            className={\`
-              w-full bg-slate-900 border rounded-lg text-sm text-slate-200 placeholder-slate-500
-              focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent
-              disabled:opacity-50 disabled:cursor-not-allowed transition-all
-              \${leftIcon ? 'pl-10 pr-3' : 'px-3'}
-              \${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700'}
-              py-2.5
-              \${className}
-            \`}
-            {...props}
-          />
+export const Card = ({ title, description, footer, children, className = '' }: CardProps) => {
+  return (
+    <div className={\`bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm \${className}\`}>
+      {(title || description) && (
+        <div className="px-6 py-5 border-b border-slate-800">
+          {title && <h3 className="text-lg font-semibold text-white">{title}</h3>}
+          {description && <p className="mt-1 text-sm text-slate-400">{description}</p>}
         </div>
-        {error && (
-          <p className="mt-1.5 text-sm text-red-500">{error}</p>
-        )}
+      )}
+      <div className="px-6 py-5">
+        {children}
       </div>
-    );
-  }
-);
-
-Input.displayName = "Input";`;
+      {footer && (
+        <div className="px-6 py-4 bg-slate-900/50 border-t border-slate-800">
+          {footer}
+        </div>
+      )}
+    </div>
+  );
+};`;
 
   return (
     <div className="w-full mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">Input</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Card</h1>
         <p className="text-muted-foreground text-lg">
-          A flexible input field that supports labels, icons, validation errors, and forward refs.
+          A versatile container for grouping related content and actions.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
         <div className="rounded-xl overflow-hidden">
-          <div className="p-10 bg-background flex flex-col gap-6 max-w-md mx-auto">
+          <div className="p-10 bg-background flex justify-center">
             {/* Simulation */}
-            <div className="w-full">
-              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Email Address</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <input type="email" placeholder="you@example.com" className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+            <div className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm w-full">
+              <div className="px-6 py-5">
+                <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Manage your account preferences and security.</p>
               </div>
-            </div>
-
-            <div className="w-full">
-              <label className="block text-sm border-none outline-none font-medium text-muted-foreground mb-1.5">Search</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
-                  <Search className="w-4 h-4" />
-                </div>
-                <input type="text" placeholder="Search documentation..." className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+              <div className="px-6 py-5">
+                <p className="text-muted-foreground text-sm">Your account is currently active. You can update your profile information below.</p>
               </div>
-            </div>
-
-            <div className="w-full">
-              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Username</label>
-              <input type="text" defaultValue="invalid_user" className="w-full bg-secondary/20 border border-red-500/50 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-transparent px-3 py-2.5" />
-              <p className="mt-1.5 text-sm text-red-500">Username is already taken.</p>
+              <div className="px-6 py-4 bg-secondary/20  flex justify-end">
+                <button className="text-sm font-medium text-primary hover:text-primary/80">Edit Profile</button>
+              </div>
             </div>
           </div>
         </div>
@@ -97,12 +68,12 @@ Input.displayName = "Input";`;
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add input" language="bash" title="Terminal" />
+        <CodeViewer code="npx next-forge-ui add card" language="bash" title="Terminal" />
       </div>
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Input.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="components/Card.tsx" />
       </div>
 
       {/* API Reference */}

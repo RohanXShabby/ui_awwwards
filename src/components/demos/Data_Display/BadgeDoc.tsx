@@ -1,91 +1,94 @@
 import React from 'react';
-import { CodeViewer } from '../CodeViewer';
-import { ComponentPreview } from '../ComponentPreview';
+import { CodeViewer } from '../../CodeViewer';
+import { ComponentPreview } from '../../ComponentPreview';
 
-export const AvatarDoc: React.FC = () => {
+export const BadgeDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
 
-interface AvatarProps {
-  src?: string;
-  alt?: string;
-  fallback: string;
-  size?: 'sm' | 'md' | 'lg';
-  status?: 'online' | 'offline' | 'busy';
+interface BadgeProps {
+  children: React.ReactNode;
+  variant?: 'default' | 'secondary' | 'outline' | 'destructive' | 'success';
+  size?: 'sm' | 'md';
   className?: string;
 }
 
-export const Avatar = ({ 
-  src, 
-  alt, 
-  fallback, 
-  size = 'md', 
-  status,
+export const Badge = ({ 
+  children, 
+  variant = 'default', 
+  size = 'md',
   className = '' 
-}: AvatarProps) => {
+}: BadgeProps) => {
   
-  const sizeClasses = {
-    sm: "w-8 h-8 text-xs",
-    md: "w-10 h-10 text-sm",
-    lg: "w-14 h-14 text-base",
+  const variants = {
+    default: "bg-white text-black border-transparent",
+    secondary: "bg-slate-800 text-slate-300 border-slate-700",
+    outline: "bg-transparent text-slate-300 border-slate-700",
+    destructive: "bg-red-500/10 text-red-400 border-red-500/20",
+    success: "bg-green-500/10 text-green-400 border-green-500/20",
   };
 
-  const statusColors = {
-    online: "bg-green-500",
-    offline: "bg-slate-500",
-    busy: "bg-red-500",
+  const sizes = {
+    sm: "text-[10px] px-1.5 py-0.5",
+    md: "text-xs px-2.5 py-0.5",
   };
 
   return (
-    <div className={\`relative inline-block \${className}\`}>
-      <div className={\`
-        \${sizeClasses[size]} 
-        rounded-full overflow-hidden bg-slate-800 border border-slate-700
-        flex items-center justify-center text-slate-300 font-medium
-      \`}>
-        {src ? (
-          <img src={src} alt={alt || fallback} className="w-full h-full object-cover" />
-        ) : (
-          <span>{fallback}</span>
-        )}
-      </div>
-      {status && (
-        <span className={\`
-          absolute bottom-0 right-0 block rounded-full ring-2 ring-slate-950
-          \${statusColors[status]}
-          \${size === 'lg' ? 'w-3.5 h-3.5' : 'w-2.5 h-2.5'}
-        \`} />
-      )}
-    </div>
+    <span className={\`
+      inline-flex items-center font-medium rounded-full border
+      \${variants[variant]}
+      \${sizes[size]}
+      \${className}
+    \`}>
+      {children}
+    </span>
   );
 };`;
 
   return (
     <div className="w-full mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">Avatar</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Badge</h1>
         <p className="text-muted-foreground text-lg">
-          A graphical representation of a user or entity, often with a status indicator.
+          A small visual indicator for states, categories, or numerical values.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
-        Avatar Code Preview
+        <div className="flex justify-between rounded-xl overflow-hidden">
+          {/* Simulation */}
+          <span className="inline-flex items-center font-medium rounded-full  bg-primary text-primary-foreground text-xs px-2.5 py-0.5">
+            New Feature
+          </span>
+          <span className="inline-flex items-center font-medium rounded-full  bg-background text-foreground text-xs px-2.5 py-0.5">
+            Documentation
+          </span>
+          <span className="inline-flex items-center font-medium rounded-full  bg-transparent text-muted-foreground  text-xs px-2.5 py-0.5">
+            Outline
+          </span>
+          <span className="inline-flex items-center font-medium rounded-full  bg-green-500/10 text-green-400 text-xs px-2.5 py-0.5">
+            Completed
+          </span>
+          <span className="inline-flex items-center font-medium rounded-full  bg-red-500/10 text-red-400 - text-xs px-2.5 py-0.5">
+            Failed
+          </span>
+        </div>
       </ComponentPreview>
 
-      {/* CLI Installation */}  
+
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add avatar" language="bash" title="Terminal" />
+        <CodeViewer code="npx next-forge-ui add badge" language="bash" title="Terminal" />
       </div>
 
-      {/* Manual Installation */}
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Avatar.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="components/Badge.tsx" />
       </div>
 
+
       {/* API Reference */}
+
       <div className="space-y-8 pt-6">
         <h2 className="text-2xl font-semibold text-foreground">API Reference</h2>
 

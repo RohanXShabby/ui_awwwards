@@ -1,79 +1,82 @@
 import React from 'react';
-import { CodeViewer } from '../CodeViewer';
-import { Component } from 'lucide-react';
-import { ComponentPreview } from '../ComponentPreview';
+import { CodeViewer } from '../../CodeViewer';
+import { Loader2, Mail, AlertCircle, Info, CheckCircle2, XCircle } from 'lucide-react';
+import { ComponentPreview } from '../../ComponentPreview';
 
-export const CardDoc: React.FC = () => {
+export const ButtonDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
+import { Loader2 } from 'lucide-react';
 
-interface CardProps {
-  title?: string;
-  description?: string;
-  footer?: React.ReactNode;
-  children: React.ReactNode;
-  className?: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
-export const Card = ({ title, description, footer, children, className = '' }: CardProps) => {
+export const Button = ({
+  children,
+  variant = 'primary',
+  size = 'md',
+  isLoading,
+  leftIcon,
+  rightIcon,
+  className = '',
+  disabled,
+  ...props
+}: ButtonProps) => {
+  const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:pointer-events-none rounded-lg";
+  
+  const variants = {
+    primary: "bg-white text-black hover:bg-slate-200 focus:ring-white",
+    secondary: "bg-slate-800 text-white hover:bg-slate-700 focus:ring-slate-500",
+    outline: "border border-slate-700 text-slate-200 hover:bg-slate-800 focus:ring-slate-500",
+    ghost: "text-slate-200 hover:bg-slate-800 hover:text-white focus:ring-slate-500",
+  };
+
+  const sizes = {
+    sm: "h-8 px-3 text-xs",
+    md: "h-10 px-4 text-sm",
+    lg: "h-12 px-6 text-base",
+  };
+
   return (
-    <div className={\`bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm \${className}\`}>
-      {(title || description) && (
-        <div className="px-6 py-5 border-b border-slate-800">
-          {title && <h3 className="text-lg font-semibold text-white">{title}</h3>}
-          {description && <p className="mt-1 text-sm text-slate-400">{description}</p>}
-        </div>
-      )}
-      <div className="px-6 py-5">
-        {children}
-      </div>
-      {footer && (
-        <div className="px-6 py-4 bg-slate-900/50 border-t border-slate-800">
-          {footer}
-        </div>
-      )}
-    </div>
+    <button
+      className={\`\${baseStyles} \${variants[variant]} \${sizes[size]} \${className}\`}
+      disabled={disabled || isLoading}
+      {...props}
+    >
+      {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+      {!isLoading && leftIcon && <span className="mr-2">{leftIcon}</span>}
+      {children}
+      {!isLoading && rightIcon && <span className="ml-2">{rightIcon}</span>}
+    </button>
   );
 };`;
 
   return (
-    <div className="w-full mx-auto space-y-8 pb-12">
+    <div className="w-full  mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">Card</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Button</h1>
         <p className="text-muted-foreground text-lg">
-          A versatile container for grouping related content and actions.
+          An interactive element used to trigger actions. Includes support for variants, sizes, icons, and loading states.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
-        <div className="rounded-xl overflow-hidden">
-          <div className="p-10 bg-background flex justify-center">
-            {/* Simulation */}
-            <div className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm w-full">
-              <div className="px-6 py-5">
-                <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Manage your account preferences and security.</p>
-              </div>
-              <div className="px-6 py-5">
-                <p className="text-muted-foreground text-sm">Your account is currently active. You can update your profile information below.</p>
-              </div>
-              <div className="px-6 py-4 bg-secondary/20  flex justify-end">
-                <button className="text-sm font-medium text-primary hover:text-primary/80">Edit Profile</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button>Click ME</button>
       </ComponentPreview>
-
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add card" language="bash" title="Terminal" />
+        <CodeViewer code="npx next-forge-ui add button" language="bash" title="Terminal" />
       </div>
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Card.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="components/Button.tsx" />
       </div>
 
       {/* API Reference */}

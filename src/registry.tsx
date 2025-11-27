@@ -1,11 +1,12 @@
 import React from 'react';
 import { Category, ComponentId } from './types';
-import { ButtonDoc } from './components/demos/ButtonDoc';
-import { InputDoc } from './components/demos/InputDoc';
-import { CardDoc } from './components/demos/CardDoc';
-import { AvatarDoc } from './components/demos/AvatarDoc';
-import { BadgeDoc } from './components/demos/BadgeDoc';
-import { AlertDoc } from './components/demos/AlertDoc';
+import { ButtonDoc } from './components/demos/Actions/ButtonDoc';
+import { InputDoc } from './components/demos/Forms/InputDoc';
+import { CardDoc } from './components/demos/Data_Display/CardDoc';
+import { AvatarDoc } from './components/demos/Data_Display/AvatarDoc';
+import { BadgeDoc } from './components/demos/Data_Display/BadgeDoc';
+import { AlertDoc } from './components/demos/Feedbacks/AlertDoc';
+import { DecryptDoc } from './components/demos/Actions/DecryptDoc';
 import { ToggleLeft, Terminal, CreditCard, MessageSquare } from 'lucide-react';
 
 export interface ComponentEntry {
@@ -31,11 +32,16 @@ export const CATEGORY_METADATA: CategoryMeta[] = [
 
 // Central definition of all components in the system
 export const COMPONENT_REGISTRY: ComponentEntry[] = [
+    // Action
     { id: ComponentId.BUTTON, label: 'Button', category: Category.ACTIONS, component: ButtonDoc },
+    { id: ComponentId.DECRYPT, label: 'Decrypt', category: Category.ACTIONS, component: DecryptDoc },
+    // Forms 
     { id: ComponentId.INPUT, label: 'Input Field', category: Category.FORMS, component: InputDoc },
+    // Data Display 
     { id: ComponentId.CARD, label: 'Card', category: Category.DATA_DISPLAY, component: CardDoc },
     { id: ComponentId.AVATAR, label: 'Avatar', category: Category.DATA_DISPLAY, component: AvatarDoc },
     { id: ComponentId.BADGE, label: 'Badge', category: Category.DATA_DISPLAY, component: BadgeDoc },
+    // Feedback
     { id: ComponentId.ALERT, label: 'Alert', category: Category.FEEDBACK, component: AlertDoc },
 ];
 

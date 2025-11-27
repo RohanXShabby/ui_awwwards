@@ -61,10 +61,6 @@ export const BackgroundGradientAnimation = ({
   ]);
 
   useEffect(() => {
-    // Animate the interactive element toward target coordinates using
-    // requestAnimationFrame. We depend only on tgX/tgY so this effect
-    // doesn't restart on every curX/curY update and won't cause
-    // an infinite update loop.
     let raf = 0;
 
     function step() {
@@ -78,11 +74,6 @@ export const BackgroundGradientAnimation = ({
         const next = prev + (tgY - prev) / 20;
         return next;
       });
-
-      // Apply transform using the latest DOM read of the refs' values.
-      // Read from the state is asynchronous, so use getBoundingClientRect for positioning
-      // or read via a ref-friendly approach: compute approximated position from tg and prev.
-      // For simplicity, read the current computed position from style if available.
       const x = Math.round(interactiveRef.current.style.transform ?
         Number(interactiveRef.current.style.transform.match(/translate\(([-0-9]+)px,\s*([-0-9]+)px\)/)?.[1]) || 0 : 0);
       const y = Math.round(interactiveRef.current.style.transform ?

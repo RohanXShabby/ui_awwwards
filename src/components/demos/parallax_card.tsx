@@ -1,5 +1,5 @@
 "use client";
-import { ParallaxCards } from "@/content/paralax_card/parallax_card";
+import { ParallaxCards } from "@/content/Cards/parallax_card";
 
 type PlaceholderCardProps = {
     index: number;

@@ -61,7 +61,7 @@ export const ComponentView = ({ activeCategory, activeComponent }: ComponentView
             <footer className="mt-auto pt-20 pb-10 border-t border-card-border/50">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col gap-1">
-                        <p className="text-sm font-medium text-foreground">Built with NextForge UI</p>
+                        <p className="text-sm font-medium text-foreground">Built By Rohan Bisht</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <a href="#" className="p-2 rounded-full hover:bg-card-bg text-muted-foreground hover:text-foreground transition-colors">

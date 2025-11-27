@@ -1,96 +1,108 @@
 import React from 'react';
-import { CodeViewer } from '../CodeViewer';
-import { ComponentPreview } from '../ComponentPreview';
-import { AlertCircle, CheckCircle2, Info, XCircle } from 'lucide-react';
+import { CodeViewer } from '../../CodeViewer';
+import { Search, Mail } from 'lucide-react';
+import { ComponentPreview } from '../../ComponentPreview';
 
-export const AlertDoc: React.FC = () => {
-  // Updated example code: Cleaner styling in the snippet
+export const InputDoc: React.FC = () => {
   const exampleCode = `import React from 'react';
-import { AlertCircle, CheckCircle2, Info, XCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
-interface AlertProps {
-  title: string;
-  children?: React.ReactNode;
-  variant?: 'info' | 'success' | 'warning' | 'error';
-  className?: string;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  leftIcon?: React.ReactNode;
 }
 
-export const Alert = ({ 
-  title, 
-  children, 
-  variant = 'info',
-  className 
-}: AlertProps) => {
-  
-  const styles = {
-    info: {
-      container: "bg-info/10 text-info border-transparent",
-      icon: <Info className="w-5 h-5" />
-    },
-    success: {
-      container: "bg-success/10 text-success border-transparent",
-      icon: <CheckCircle2 className="w-5 h-5" />
-    },
-    warning: {
-      container: "bg-warning/10 text-warning border-transparent",
-      icon: <AlertCircle className="w-5 h-5" />
-    },
-    error: {
-      container: "bg-error/10 text-error border-transparent",
-      icon: <XCircle className="w-5 h-5" />
-    }
-  };
-
-  const style = styles[variant];
-
-  return (
-    <div className={cn(
-      "p-4 rounded-xl border flex items-start gap-3 transition-colors",
-      style.container,
-      className
-    )}>
-      <div className="mt-0.5 shrink-0 opacity-90">
-        {style.icon}
-      </div>
-      <div className="flex-1">
-        <h5 className="font-semibold leading-none tracking-tight">{title}</h5>
-        {children && (
-          <div className="mt-2 text-sm opacity-90 leading-relaxed font-medium">
-            {children}
-          </div>
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, leftIcon, className = '', ...props }, ref) => {
+    return (
+      <div className="w-full">
+        {label && (
+          <label className="block text-sm font-medium text-slate-300 mb-1.5">
+            {label}
+          </label>
+        )}
+        <div className="relative">
+          {leftIcon && (
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+              {leftIcon}
+            </div>
+          )}
+          <input
+            ref={ref}
+            className={\`
+              w-full bg-slate-900 border rounded-lg text-sm text-slate-200 placeholder-slate-500
+              focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent
+              disabled:opacity-50 disabled:cursor-not-allowed transition-all
+              \${leftIcon ? 'pl-10 pr-3' : 'px-3'}
+              \${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700'}
+              py-2.5
+              \${className}
+            \`}
+            {...props}
+          />
+        </div>
+        {error && (
+          <p className="mt-1.5 text-sm text-red-500">{error}</p>
         )}
       </div>
-    </div>
-  );
-};`;
+    );
+  }
+);
+
+Input.displayName = "Input";`;
 
   return (
     <div className="w-full mx-auto space-y-8 pb-12">
-
-      {/* Header Section */}
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">Alert</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-4">Input</h1>
         <p className="text-muted-foreground text-lg">
-          A graphical representation of a user or entity, often with a status indicator.
+          A flexible input field that supports labels, icons, validation errors, and forward refs.
         </p>
       </div>
 
       {/* Preview Area */}
       <ComponentPreview>
-        <button>Alert box preview</button>
+        <div className="rounded-xl overflow-hidden">
+          <div className="p-10 bg-background flex flex-col gap-6 max-w-md mx-auto">
+            {/* Simulation */}
+            <div className="w-full">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Email Address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input type="email" placeholder="you@example.com" className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label className="block text-sm border-none outline-none font-medium text-muted-foreground mb-1.5">Search</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
+                  <Search className="w-4 h-4" />
+                </div>
+                <input type="text" placeholder="Search documentation..." className="w-full bg-secondary/20 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10 pr-3 py-2.5" />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Username</label>
+              <input type="text" defaultValue="invalid_user" className="w-full bg-secondary/20 border border-red-500/50 rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-transparent px-3 py-2.5" />
+              <p className="mt-1.5 text-sm text-red-500">Username is already taken.</p>
+            </div>
+          </div>
+        </div>
       </ComponentPreview>
 
-      {/* CLI Installation */}
+
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-        <CodeViewer code="npx next-forge-ui add avatar" language="bash" title="Terminal" />
+        <CodeViewer code="npx next-forge-ui add input" language="bash" title="Terminal" />
       </div>
 
-      {/* Manual Installation */}
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="components/Avatar.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="components/Input.tsx" />
       </div>
 
       {/* API Reference */}
@@ -115,7 +127,7 @@ export const Alert = ({
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-card-bg border-b border-card-border/30 text-sm font-semibold text-muted-foreground uppercase">
+                    <tr className="bg-card-bg/40 border-b border-card-border/30 text-xs font-semibold text-muted-foreground uppercase">
                       <th className="py-4 px-6 whitespace-nowrap">Prop</th>
                       <th className="py-4 px-6 whitespace-nowrap">Type</th>
                       <th className="py-4 px-6 whitespace-nowrap">Default</th>
@@ -156,7 +168,6 @@ export const Alert = ({
           </div>
         </div>
       </div>
-
 
     </div>
   );
