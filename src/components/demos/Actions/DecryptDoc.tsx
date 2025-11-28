@@ -224,20 +224,20 @@ export default function DecryptedText({
 
             {/* Preview Area */}
             <ComponentPreview >
-                <div className='w-fit mx-auto text-4xl font-black text-muted-foreground/40 mb-4'>Hover Over</div>
-                <div className='flex gap-2'>
-                    <button className='flex border border-foreground/20 px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
-                        <DecryptedText text='With Default Value' />
+                <div className='w-fit mx-auto text-4xl font-black text-muted-foreground/40 mb-4'>Hover Below</div>
+                <div className='flex flex-wrap items-center font-semibold text-muted-foreground justify-center gap-2'>
+                    <button className='flex border w-50 border-foreground/20 capitalize px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
+                        <DecryptedText text='DEFAULT VALUES'  />
                     </button>
-                    <button className='flex border border-foreground/20 px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
-                        <DecryptedText text='Sequential' speed={70} sequential={true} />
+                    <button className='flex border border-foreground/20 w-50 px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
+                        <DecryptedText text='SEQUENTIAL' speed={70} sequential={true} />
                     </button>
                 </div>
             </ComponentPreview>
 
             <div>
                 <h2 className="text-xl font-semibold text-foreground mb-4">CLI Installation</h2>
-                <CodeViewer code="npx next-forge-ui add button" language="bash" title="Terminal" />
+                <CodeViewer code="Coming Soon..." language="bash" title="Terminal" />
             </div>
 
             <div>
@@ -255,7 +255,7 @@ export default function DecryptedText({
                     <div>
                         <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Dependencies</h3>
                         <div className="inline-flex items-center gap-2 p-3 bg-card-bg/30 rounded-lg text-sm text-foreground ring-1 ring-card-border/50">
-                            <span className="text-accent font-mono">npm</span> install lucide-react
+                            <span className="text-accent font-mono">npm</span> install motion
                         </div>
                     </div>
 
@@ -275,31 +275,96 @@ export default function DecryptedText({
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm divide-y divide-card-border/30">
+                                        {/* text */}
                                         <tr>
-                                            <td className="py-4 px-6 font-mono text-accent font-medium">title</td>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">text</td>
                                             <td className="py-4 px-6 font-mono text-muted-foreground">string</td>
                                             <td className="py-4 px-6 font-mono text-muted-foreground">-</td>
-                                            <td className="py-4 px-6 text-foreground/80">The title header of the alert.</td>
+                                            <td className="py-4 px-6 text-foreground/80">The text content to animate.</td>
                                         </tr>
+
+                                        {/* speed */}
                                         <tr>
-                                            <td className="py-4 px-6 font-mono text-accent font-medium">variant</td>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">speed</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">number</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">50</td>
+                                            <td className="py-4 px-6 text-foreground/80">The speed of the scrambling animation.</td>
+                                        </tr>
+
+                                        {/* maxIterations */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">maxIterations</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">number</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">10</td>
+                                            <td className="py-4 px-6 text-foreground/80">Maximum number of iterations before the text is resolved.</td>
+                                        </tr>
+
+                                        {/* sequential */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">sequential</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">boolean</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">false</td>
+                                            <td className="py-4 px-6 text-foreground/80">Whether to reveal the text sequentially or all at once.</td>
+                                        </tr>
+
+                                        {/* revealDirection */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">revealDirection</td>
                                             <td className="py-4 px-6 font-mono text-muted-foreground">enum</td>
-                                            <td className="py-4 px-6 font-mono text-muted-foreground">'info'</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">start</td>
                                             <td className="py-4 px-6 text-foreground/80">
-                                                One of <span className="opacity-70 bg-card-bg px-1 rounded">info</span>, <span className="opacity-70 bg-card-bg px-1 rounded">success</span>, <span className="opacity-70 bg-card-bg px-1 rounded">warning</span>, or <span className="opacity-70 bg-card-bg px-1 rounded">error</span>.
+                                                Direction to reveal text. One of <span className="opacity-70 bg-card-bg px-1 rounded">start</span>, <span className="opacity-70 bg-card-bg px-1 rounded">end</span>, or <span className="opacity-70 bg-card-bg px-1 rounded">center</span>.
                                             </td>
                                         </tr>
+
+                                        {/* useOriginalCharsOnly */}
                                         <tr>
-                                            <td className="py-4 px-6 font-mono text-accent font-medium">children</td>
-                                            <td className="py-4 px-6 font-mono text-muted-foreground">ReactNode</td>
-                                            <td className="py-4 px-6 font-mono text-muted-foreground">-</td>
-                                            <td className="py-4 px-6 text-foreground/80">Additional description or content.</td>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">useOriginalCharsOnly</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">boolean</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">false</td>
+                                            <td className="py-4 px-6 text-foreground/80">If true, only uses characters from the original string for scrambling.</td>
                                         </tr>
+
+                                        {/* characters */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">characters</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">string</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">Aa-Zz !@#$%^&*()_+</td>
+                                            <td className="py-4 px-6 text-foreground/80">String of custom characters to use for the scrambling effect.</td>
+                                        </tr>
+
+                                        {/* className */}
                                         <tr>
                                             <td className="py-4 px-6 font-mono text-accent font-medium">className</td>
                                             <td className="py-4 px-6 font-mono text-muted-foreground">string</td>
                                             <td className="py-4 px-6 font-mono text-muted-foreground">-</td>
-                                            <td className="py-4 px-6 text-foreground/80">Additional CSS classes for the container.</td>
+                                            <td className="py-4 px-6 text-foreground/80">Additional CSS classes for the text element.</td>
+                                        </tr>
+
+                                        {/* encryptedClassName */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">encryptedClassName</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">string</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">-</td>
+                                            <td className="py-4 px-6 text-foreground/80">Specific CSS classes applied only to the scrambled/encrypted characters.</td>
+                                        </tr>
+
+                                        {/* parentClassName */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">parentClassName</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">string</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">-</td>
+                                            <td className="py-4 px-6 text-foreground/80">CSS classes for the parent container wrapper.</td>
+                                        </tr>
+
+                                        {/* animateOn */}
+                                        <tr>
+                                            <td className="py-4 px-6 font-mono text-accent font-medium">animateOn</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">enum</td>
+                                            <td className="py-4 px-6 font-mono text-muted-foreground">hover</td>
+                                            <td className="py-4 px-6 text-foreground/80">
+                                                Trigger condition for the animation. One of <span className="opacity-70 bg-card-bg px-1 rounded">view</span>, <span className="opacity-70 bg-card-bg px-1 rounded">hover</span>, or <span className="opacity-70 bg-card-bg px-1 rounded">both</span>.
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

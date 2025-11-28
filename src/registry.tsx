@@ -7,7 +7,7 @@ import { AvatarDoc } from './components/demos/Data_Display/AvatarDoc';
 import { BadgeDoc } from './components/demos/Data_Display/BadgeDoc';
 import { AlertDoc } from './components/demos/Feedbacks/AlertDoc';
 import { DecryptDoc } from './components/demos/Actions/DecryptDoc';
-import { ToggleLeft, Terminal, CreditCard, MessageSquare } from 'lucide-react';
+import { ToggleLeft, Terminal, CreditCard, MessageSquare, Layers2 } from 'lucide-react';
 
 export interface ComponentEntry {
     id: ComponentId;
@@ -25,6 +25,7 @@ export interface CategoryMeta {
 // Defines the available categories and their metadata (icons, labels)
 export const CATEGORY_METADATA: CategoryMeta[] = [
     { id: Category.ACTIONS, label: 'Actions', icon: ToggleLeft },
+    { id: Category.CARDS, label: 'Cards', icon: Layers2 },
     { id: Category.FORMS, label: 'Forms', icon: Terminal },
     { id: Category.DATA_DISPLAY, label: 'Data Display', icon: CreditCard },
     { id: Category.FEEDBACK, label: 'Feedback', icon: MessageSquare },

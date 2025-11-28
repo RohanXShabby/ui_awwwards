@@ -119,6 +119,7 @@ html.theme-ready body {
   direction: ltr;
 }
 
+
 ::selection{
   background: #FE7743;
   color: #101010;
