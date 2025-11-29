@@ -65,8 +65,6 @@ const page = () => {
                 <h1 className="font-bold">Parallex Cards : </h1>
                 <Parallax_card />
             </div>
-
-
         </div>
     )
 }
