@@ -1,72 +1,26 @@
-"use client";
-
-import DecryptedText from "@/content/Actions/decrypt";
 import { ParallaxCards } from "@/content/Cards/parallax_card";
-import Parallax_card from "@/components/demos/parallax_card";
+import { div } from "framer-motion/client";
 
-type PlaceholderCardProps = {
-    index: number;
-    src: string;
-};
-
-function PlaceholderCard({ index, src }: PlaceholderCardProps) {
-    function Message({ children }: { children: string }) {
-        return (
-            <span className="absolute top-0.75 left-0.75 text-[9px] leading-none sm:text-xs">
-                {children}
-            </span>
-        );
-    }
+const page = () => {
+    const images = [
+        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+        "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3070&q=80",
+        "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+        "https://images.unsplash.com/photo-1682686581854-5e71f58e7e3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+        "https://images.unsplash.com/photo-1510784722466-f2aa9c52fff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+    ];
 
     return (
-        <div
-            className="h-125 opacity-100 "
-            style={{ backgroundColor: `var(--chart-${index + 1})` }}
-        >
-            <div className="border-foreground relative size-full border">
-                {src && <img src={src} alt="" className="w-full h-full object-cover" />}
-            </div>
+        <div className="h-screen">
+            <ParallaxCards
+                images={images}
+                maxStackedCards={5}
+                top="54px"
+                height="500px"
+
+            />
         </div>
     );
-}
-const page = () => {
-    return (
-        <div className="pt-32 px-32" >
-            {/* decrypt text */}
-            <div className="flex items-center justify-evenly border border-muted-foreground py-4 rounded-2xl">
-                <h1 className="font-bold">Decrypt Text : </h1>
-                {/* Example 1: Defaults (hover to decrypt) */}
-                <div className="border cursor-pointer py-2 px-2 rounded-2xl">
-                    <DecryptedText text="Hover me!" />
-                </div>
-                {/* Example 2: Customized speed and characters */}
-                <div className="border cursor-pointer py-2 px-2 rounded-2xl">
-                    <DecryptedText
-                        text="Customize me"
-                        speed={100}
-                        maxIterations={20}
-                        characters="ABCD1234!?"
-                        className="revealed"
-                        parentClassName="all-letters"
-                        encryptedClassName="encrypted"
-                    />
-                </div>
-                {/* Example 3: Animate on view (runs once) */}
-                <div className="border cursor-pointer py-2 px-2 rounded-2xl">
-                    <DecryptedText
-                        text="This text animates when in view"
-                        animateOn="view"
-                        revealDirection="center"
-                    />
-                </div>
-            </div>
-            {/* parallexcard */}
-            <div className="flex flex-col w-full justify-evenly items-center border border-muted-foreground py-4 rounded-2xl mt-16">
-                <h1 className="font-bold">Parallex Cards : </h1>
-                <Parallax_card />
-            </div>
-        </div>
-    )
-}
+};
 
-export default page 
+export default page;

@@ -7,6 +7,7 @@ import { AvatarDoc } from './components/demos/Data_Display/AvatarDoc';
 import { BadgeDoc } from './components/demos/Data_Display/BadgeDoc';
 import { AlertDoc } from './components/demos/Feedbacks/AlertDoc';
 import { DecryptDoc } from './components/demos/Actions/DecryptDoc';
+import { ParallaxCardDoc } from './components/demos/Cards/ParallaxCardDoc';
 import { ToggleLeft, Terminal, CreditCard, MessageSquare, Layers2 } from 'lucide-react';
 
 export interface ComponentEntry {
@@ -36,6 +37,8 @@ export const COMPONENT_REGISTRY: ComponentEntry[] = [
     // Action
     { id: ComponentId.BUTTON, label: 'Button', category: Category.ACTIONS, component: ButtonDoc },
     { id: ComponentId.DECRYPT, label: 'Decrypt', category: Category.ACTIONS, component: DecryptDoc },
+    // Cards
+    { id: ComponentId.PARALLAX_CARD, label: 'Parallax Card', category: Category.CARDS, component: ParallaxCardDoc },
     // Forms 
     { id: ComponentId.INPUT, label: 'Input Field', category: Category.FORMS, component: InputDoc },
     // Data Display 

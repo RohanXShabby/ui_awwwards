@@ -21,7 +21,7 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
             </div>
 
             {/* Window Container - Added 'flex-1' and 'flex flex-col' */}
-            <div className="flex-1 flex flex-col rounded-3xl overflow-hidden shadow-sm ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-md bg-card-bg/20 backdrop-blur-md">
+            <div className="flex-1 flex flex-col rounded-3xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-md bg-card-bg/20 backdrop-blur-md">
 
                 {/* Header Bar */}
                 <div className="px-6 py-4 border-b border-white/5 bg-card-bg/40 shrink-0">

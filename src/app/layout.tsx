@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <ThemeProvider>
           <Navbar />
-          <div className="flex-1 w-full max-w-[1920px] mx-auto flex flex-col relative shadow-2xl overflow-hidden bg-background">
+          <div className="flex-1 w-full max-w-[1920px] mx-auto flex flex-col relative shadow-2xl bg-background">
             <main className="flex-1 min-h-0">
               {children}
             </main>

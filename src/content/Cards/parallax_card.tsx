@@ -12,22 +12,26 @@ import { cn } from "@/lib/utils";
 
 export interface ParallaxCardsProps
     extends React.ComponentPropsWithoutRef<"div"> {
-    children: React.ReactElement[];
+    images: string[];
     maxStackedCards?: number;
     top?: React.CSSProperties["top"];
     forceParallax?: boolean;
+    width?: string | number;
+    height?: string | number;
 }
 
 export function ParallaxCards({
+    images,
     maxStackedCards = 3,
     top = "50px",
     forceParallax = false,
+    width = "100%",
+    height = "500px",
     className,
     style,
-    children,
     ...rest
 }: ParallaxCardsProps) {
-    const totalCards = children.length;
+    const totalCards = images.length;
     const topMagnitude = parseFloat(String(top));
     const topUnit = String(top).slice(String(topMagnitude).length) || "px";
 
@@ -76,14 +80,15 @@ export function ParallaxCards({
 
             <div
                 ref={containerRef}
-                className={cn("w-full", className, "relative! grid! py-0!")}
+                className={cn("w-full relative! grid! py-0!", className)}
                 style={{
                     ...style,
+                    width,
                     gridTemplateRows: `repeat(${totalCards}, 1fr)`,
                 }}
                 {...rest}
             >
-                {children.map((child, index) => (
+                {images.map((image, index) => (
                     <ParallaxCard
                         key={`cards[${index}]`}
                         index={index}
@@ -97,8 +102,13 @@ export function ParallaxCards({
                         }}
                         isSticky={isSticky}
                         forceParallax={forceParallax}
+                        height={height}
                     >
-                        {child}
+                        <img
+                            src={image}
+                            alt={`Parallax card ${index + 1}`}
+                            className="size-full object-cover rounded-xl"
+                        />
                     </ParallaxCard>
                 ))}
             </div>
@@ -119,6 +129,7 @@ interface CardProps {
         absolute: string;
     };
     forceParallax: boolean;
+    height: string | number;
 }
 
 function ParallaxCard({
@@ -130,6 +141,7 @@ function ParallaxCard({
     top,
     isSticky,
     forceParallax,
+    height,
 }: CardProps) {
     const y = useTransform(
         scrollYProgress,
@@ -166,6 +178,7 @@ function ParallaxCard({
                 paddingTop: top.absolute,
                 position: isSticky ? "sticky" : "relative",
                 top: "0px",
+                height: height,
             }}
         >
             <motion.div
