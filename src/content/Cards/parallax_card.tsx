@@ -160,13 +160,13 @@ function ParallaxCard({
     const scale = useTransform(
         scrollYProgress,
         [index * scrollRatio, (index + maxStackedCards) * scrollRatio],
-        [1, 0.85],
+        [1, 0.7],
     );
 
     const opacity = useTransform(
         scrollYProgress,
         [
-            (index + maxStackedCards - 1) * scrollRatio,
+            index * scrollRatio,
             (index + maxStackedCards) * scrollRatio,
         ],
         [1, 0],

@@ -2,6 +2,8 @@ import React from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { ComponentPreview } from '../../ComponentPreview';
 import { ParallaxCards } from '@/content/Cards/parallax_card';
+import { Usecase } from '../../Usecase';
+
 
 export const ParallaxCardDoc: React.FC = () => {
 
@@ -175,13 +177,13 @@ function ParallaxCard({
     const scale = useTransform(
         scrollYProgress,
         [index * scrollRatio, (index + maxStackedCards) * scrollRatio],
-        [1, 0.85],
+        [1, 0.8],
     );
 
     const opacity = useTransform(
         scrollYProgress,
         [
-            (index + maxStackedCards - 1) * scrollRatio,
+            index * scrollRatio,
             (index + maxStackedCards) * scrollRatio,
         ],
         [1, 0],
@@ -218,7 +220,7 @@ function ParallaxCard({
             <div>
                 <h1 className="text-3xl font-bold text-foreground mb-4">Parallax Cards</h1>
                 <p className="text-muted-foreground  text-lg">
-                    A stack of cards that reveals content with a parallax scrolling effect. 
+                    A stack of cards that reveals content with a parallax scrolling effect.
                     <br />
                     <br />
 
@@ -227,12 +229,12 @@ function ParallaxCard({
             </div>
 
             {/* Preview Area */}
-            <ComponentPreview className='h-[80vh] overflow-y-scroll'>
+            <ComponentPreview className='h-[500px] overflow-y-scroll'>
                 <ParallaxCards
                     images={images}
                     maxStackedCards={5}
                     top="54px"
-                    height="500px"
+                    height="450px"
                 />
             </ComponentPreview>
 
@@ -245,6 +247,21 @@ function ParallaxCard({
                 <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
                 <CodeViewer code={exampleCode} language="tsx" title="components/ParallaxCards.tsx" />
             </div>
+
+            <Usecase
+                title="Usage"
+                description="This is what it does."
+                code={`   
+<div>
+<ParallaxCards
+    images={images}
+    maxStackedCards={5}
+    top="54px"
+    height="500px"
+/>
+</div>
+`}
+            />
 
             {/* API Reference */}
             <div className="space-y-8 pt-6">

@@ -2,15 +2,22 @@
 
 /* Light Theme (default) */
 :root {
-  --color-background: #EFEEEA;        /* Base light background */
-  --color-foreground: #101010;        /* Text color */
-  --color-accent: #FE7743;            /* Primary accent */
+  --color-background: #EFEEEA;
+  /* Base light background */
+  --color-foreground: #101010;
+  /* Text color */
+  --color-accent: #FE7743;
+  /* Primary accent */
 
   /* Derived tones */
-  --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 60%, var(--color-background)); /* softer text */
-  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));          /* subtle lift from background */
-  --color-card-border: color-mix(in srgb, var(--color-foreground) 15%, var(--color-background));      /* light neutral border */
-  --color-link: color-mix(in srgb, var(--color-accent) 70%, var(--color-foreground));                 /* accent-tinted link */
+  --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 60%, var(--color-background));
+  /* softer text */
+  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));
+  /* subtle lift from background */
+  --color-card-border: color-mix(in srgb, var(--color-foreground) 15%, var(--color-background));
+  /* light neutral border */
+  --color-link: color-mix(in srgb, var(--color-accent) 70%, var(--color-foreground));
+  /* accent-tinted link */
 
   /* Status colors */
   --color-success: #10b981;
@@ -21,15 +28,22 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --color-background: #101010;        /* Base dark background */
-  --color-foreground: #EFEEEA;        /* Light text */
-  --color-accent: #FE7743;            /* Same accent for consistency */
+  --color-background: #101010;
+  /* Base dark background */
+  --color-foreground: #EFEEEA;
+  /* Light text */
+  --color-accent: #FE7743;
+  /* Same accent for consistency */
 
   /* Derived tones */
-  --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 70%, var(--color-background)); /* softer text */
-  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));              /* subtle tint */
-  --color-card-border: color-mix(in srgb, var(--color-foreground) 20%, var(--color-background));      /* faint border */
-  --color-link: color-mix(in srgb, var(--color-accent) 80%, var(--color-foreground));                 /* vivid link */
+  --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 70%, var(--color-background));
+  /* softer text */
+  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));
+  /* subtle tint */
+  --color-card-border: color-mix(in srgb, var(--color-foreground) 20%, var(--color-background));
+  /* faint border */
+  --color-link: color-mix(in srgb, var(--color-accent) 80%, var(--color-foreground));
+  /* vivid link */
 
   /* Status colors */
   --color-success: #34d399;
@@ -78,9 +92,11 @@ html.theme-ready body {
     0% {
       transform: translateX(-50%) translateY(-10%);
     }
+
     50% {
       transform: translateX(50%) translateY(10%);
     }
+
     100% {
       transform: translateX(-50%) translateY(-10%);
     }
@@ -90,9 +106,11 @@ html.theme-ready body {
     0% {
       transform: rotate(0deg);
     }
+
     50% {
       transform: rotate(180deg);
     }
+
     100% {
       transform: rotate(360deg);
     }
@@ -102,9 +120,11 @@ html.theme-ready body {
     0% {
       transform: translateY(-50%);
     }
+
     50% {
       transform: translateY(50%);
     }
+
     100% {
       transform: translateY(-50%);
     }
@@ -120,7 +140,7 @@ html.theme-ready body {
 }
 
 
-::selection{
+::selection {
   background: #FE7743;
   color: #101010;
 }
@@ -149,4 +169,36 @@ html.theme-ready body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
   /* darker on hover */
+}
+
+*::-webkit-scrollbar-button,
+.custom-scrollbar::-webkit-scrollbar-button,
+*::-webkit-scrollbar-button:single-button,
+*::-webkit-scrollbar-button:single-button:vertical,
+*::-webkit-scrollbar-button:single-button:horizontal {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  /* or none to hide */
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* fully hide scrollbar (if that's desired) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none !important;
 }
