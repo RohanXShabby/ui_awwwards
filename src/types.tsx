@@ -16,6 +16,7 @@ export enum Category {
 }
 
 export enum ComponentId {
+    BUTTON_3D = 'BUTTON_3D',
     PARALLAX_CARD = 'PARALLAX_CARD',
     DECRYPT = 'DECRYPT',
     BUTTON = 'BUTTON',

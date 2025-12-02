@@ -13,11 +13,12 @@ interface DecryptedTextProps extends HTMLMotionProps<'span'> {
     encryptedClassName?: string;
     parentClassName?: string;
     animateOn?: 'view' | 'hover' | 'both';
+    animate?: boolean;
 }
 
 export default function DecryptedText({
     text,
-    speed = 50,
+    speed = 60,
     maxIterations = 10,
     sequential = false,
     revealDirection = 'start',
@@ -27,6 +28,7 @@ export default function DecryptedText({
     parentClassName = '',
     encryptedClassName = '',
     animateOn = 'hover',
+    animate, 
     ...props
 }: DecryptedTextProps) {
     const [displayText, setDisplayText] = useState<string>(text);
@@ -105,7 +107,10 @@ export default function DecryptedText({
             }
         };
 
-        if (isHovering) {
+        // 3. MERGE STATE: Check if manually animated OR internally hovered
+        const shouldAnimate = animate !== undefined ? animate : isHovering;
+
+        if (shouldAnimate) {
             setIsScrambling(true);
             interval = setInterval(() => {
                 setRevealedIndices(prevRevealed => {
@@ -142,7 +147,8 @@ export default function DecryptedText({
         return () => {
             if (interval) clearInterval(interval);
         };
-    }, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly]);
+        // 4. ADD 'animate' TO DEPENDENCY ARRAY
+    }, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly, animate]);
 
     useEffect(() => {
         if (animateOn !== 'view' && animateOn !== 'both') return;
@@ -192,7 +198,9 @@ export default function DecryptedText({
 
             <span aria-hidden="true">
                 {displayText.split('').map((char, index) => {
-                    const isRevealedOrDone = revealedIndices.has(index) || !isScrambling || !isHovering;
+                    // 5. UPDATE RENDER LOGIC to check 'animate' prop
+                    const shouldAnimate = animate !== undefined ? animate : isHovering;
+                    const isRevealedOrDone = revealedIndices.has(index) || !isScrambling || !shouldAnimate;
 
                     return (
                         <span key={index} className={isRevealedOrDone ? className : encryptedClassName}>

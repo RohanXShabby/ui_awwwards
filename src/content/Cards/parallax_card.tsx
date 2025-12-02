@@ -18,6 +18,7 @@ export interface ParallaxCardsProps
     forceParallax?: boolean;
     width?: string | number;
     height?: string | number;
+    scrollContainerRef?: React.RefObject<any>;
 }
 
 export function ParallaxCards({
@@ -29,6 +30,7 @@ export function ParallaxCards({
     height = "500px",
     className,
     style,
+    scrollContainerRef,
     ...rest
 }: ParallaxCardsProps) {
     const totalCards = images.length;
@@ -44,6 +46,7 @@ export function ParallaxCards({
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
+        container: scrollContainerRef,
         offset: ["start start", "end start"],
     });
 
@@ -91,7 +94,7 @@ export function ParallaxCards({
                 {images.map((image, index) => (
                     <ParallaxCard
                         key={`cards[${index}]`}
-                        index={index}
+                        index={index - 1}
                         scrollYProgress={scrollYProgress}
                         scrollRatio={1 / totalCards}
                         maxStackedCards={maxStackedCards}
@@ -160,16 +163,7 @@ function ParallaxCard({
     const scale = useTransform(
         scrollYProgress,
         [index * scrollRatio, (index + maxStackedCards) * scrollRatio],
-        [1, 0.7],
-    );
-
-    const opacity = useTransform(
-        scrollYProgress,
-        [
-            index * scrollRatio,
-            (index + maxStackedCards) * scrollRatio,
-        ],
-        [1, 0],
+        [1, 0.8],
     );
 
     return (
@@ -185,7 +179,6 @@ function ParallaxCard({
                 {...(isSticky && {
                     style: {
                         scale,
-                        opacity,
                         y,
                         maxHeight: forceParallax ? `calc(100vh - ${top.absolute})` : "none",
                     },

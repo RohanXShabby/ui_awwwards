@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { ComponentPreview } from '../../ComponentPreview';
 import { ParallaxCards } from '@/content/Cards/parallax_card';
 import { Usecase } from '../../Usecase';
 
 
-export const ParallaxCardDoc: React.FC = () => {
+export const ParallaxCardDemo: React.FC = () => {
+
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const images = [
         "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
@@ -229,13 +231,16 @@ function ParallaxCard({
             </div>
 
             {/* Preview Area */}
-            <ComponentPreview className='h-[500px] overflow-y-scroll'>
-                <ParallaxCards
-                    images={images}
-                    maxStackedCards={5}
-                    top="54px"
-                    height="450px"
-                />
+            <ComponentPreview  >
+                <div className='h-[500px] overflow-y-scroll' ref={scrollRef}>
+                    <ParallaxCards
+                        images={images}
+                        maxStackedCards={3}
+                        top="54px"
+                        height="500px"
+                        scrollContainerRef={scrollRef}
+                    />
+                </div>
             </ComponentPreview>
 
             <div>

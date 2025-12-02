@@ -1,7 +1,11 @@
+'use client';
 import { ParallaxCards } from "@/content/Cards/parallax_card";
 import { div } from "framer-motion/client";
+import Button3D from "@/content/Actions/Button3D";
+import { useRef } from "react";
 
 const page = () => {
+    const scrollRef = useRef<HTMLDivElement>(null);
     const images = [
         "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
         "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3070&q=80",
@@ -11,15 +15,43 @@ const page = () => {
     ];
 
     return (
-        <div className="h-screen">
-            <ParallaxCards
-                images={images}
-                maxStackedCards={5}
-                top="54px"
-                height="500px"
+        <>
+            <div className="h-screen overflow-y-scroll" ref={scrollRef}>
+                <ParallaxCards
+                    images={images}
+                    maxStackedCards={5}
+                    top="54px"
+                    height="700px"
+                    scrollContainerRef={scrollRef}
+                />
+            </div>
 
-            />
-        </div>
+            <div>
+                <div className="flex py-24 gap-8 items-center justify-center">
+
+                    {/* 1. Default Style */}
+                    <Button3D onClick={() => console.log('Clicked!')} />
+
+                    {/* 2. Custom Dimensions & Colors */}
+                    <Button3D
+                        label="Submit"
+                        width="200px"
+                        height="60px"
+                        topColor="#E0F7FA"     // Light Cyan
+                        bottomColor="#4DD0E1"  // Cyan
+                        outlineColor="#006064" // Dark Cyan
+                    />
+
+                    {/* 3. Pink Theme */}
+                    <Button3D
+                        label="Buy Now"
+                        topColor="#ffc8dd"
+                        bottomColor="#ffafcc"
+                        outlineColor="#590d22"
+                    />
+                </div>
+            </div>
+        </>
     );
 };
 

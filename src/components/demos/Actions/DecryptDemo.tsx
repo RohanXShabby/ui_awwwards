@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { Loader2, Mail, AlertCircle, Info, CheckCircle2, XCircle } from 'lucide-react';
 import { ComponentPreview } from '../../ComponentPreview';
 import DecryptedText from '@/content/Actions/decrypt';
 
 export const DecryptDoc: React.FC = () => {
+    const [isHovered1, setIsHovered1] = useState(false);
+    const [isHovered2, setIsHovered2] = useState(false);
+
     const exampleCode = ` import { useEffect, useState, useRef } from 'react';
 import { motion, HTMLMotionProps } from 'motion/react';
 
@@ -224,14 +227,39 @@ export default function DecryptedText({
 
             {/* Preview Area */}
             <ComponentPreview >
-                <div className='w-fit mx-auto text-4xl font-black text-muted-foreground/40 mb-4'>Hover Below</div>
-                <div className='flex flex-wrap items-center font-semibold text-muted-foreground justify-center gap-2'>
-                    <button className='flex border w-50 border-foreground/20 capitalize px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
-                        <DecryptedText text='DEFAULT VALUES'  />
-                    </button>
-                    <button className='flex border border-foreground/20 w-50 px-4 py-2 rounded-md items-center justify-center cursor-pointer'>
-                        <DecryptedText text='SEQUENTIAL' speed={70} sequential={true} />
-                    </button>
+                <div className="w-full flex flex-col items-center">
+                    <div className='w-fit mx-auto text-4xl font-black text-muted-foreground/40 mb-4'>
+                        Hover Below
+                    </div>
+
+                    <div className='flex flex-wrap items-center font-semibold text-muted-foreground justify-center gap-2'>
+
+                        {/* Button 1: Default Values */}
+                        <button
+                            className='flex border w-50 border-foreground/20 capitalize px-4 py-2 rounded-md items-center justify-center cursor-pointer transition-colors hover:bg-foreground/5'
+                            onMouseEnter={() => setIsHovered1(true)}
+                            onMouseLeave={() => setIsHovered1(false)}
+                        >
+                            <DecryptedText
+                                text='DEFAULT VALUES'
+                                animate={isHovered1}
+                            />
+                        </button>
+
+                        {/* Button 2: Sequential */}
+                        <button
+                            className='flex border border-foreground/20 w-50 px-4 py-2 rounded-md items-center justify-center cursor-pointer transition-colors hover:bg-foreground/5'
+                            onMouseEnter={() => setIsHovered2(true)}
+                            onMouseLeave={() => setIsHovered2(false)}
+                        >
+                            <DecryptedText
+                                text='SEQUENTIAL'
+                                speed={70}
+                                sequential={true}
+                                animate={isHovered2}
+                            />
+                        </button>
+                    </div>
                 </div>
             </ComponentPreview>
 

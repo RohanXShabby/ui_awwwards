@@ -1,6 +1,7 @@
 import { Layers, Github } from 'lucide-react';
 import { Category, ComponentId } from '@/types';
 import { getComponentById } from '@/registry';
+import Link from 'next/link';
 
 interface ComponentViewProps {
     activeCategory: Category;
@@ -58,13 +59,14 @@ export const ComponentView = ({ activeCategory, activeComponent }: ComponentView
             </div>
 
             {/* Footer inside Content Area */}
-            <footer className="mt-auto pt-20 pb-10 border-t border-card-border/50">
+            <footer className="mt-auto p-8">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col gap-1">
-                        <p className="text-sm font-medium text-foreground">Built By Rohan Bisht</p>
+                        <p className="text-sm font-medium text-muted-foreground">Build By <Link href="https://www.linkedin.com/in/rohan-bisht-7240a9246/" target="_blank" className="underline text-foreground">Rohan Bisht</Link></p>
+                        <p className="text-sm font-medium text-muted-foreground">Built with <Link href="https://nextjs.org" target="_blank" className="underline text-foreground">Next.js</Link></p>
                     </div>
                     <div className="flex items-center gap-4">
-                        <a href="#" className="p-2 rounded-full hover:bg-card-bg text-muted-foreground hover:text-foreground transition-colors">
+                        <a href="https://github.com/rohanxshabby" className="p-2 rounded-full hover:bg-card-bg text-muted-foreground hover:text-foreground transition-colors">
                             <Github className="w-5 h-5" />
                         </a>
                     </div>

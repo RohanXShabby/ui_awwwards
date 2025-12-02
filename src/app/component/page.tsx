@@ -18,7 +18,7 @@ import { MobileOverlay } from '@/components/docs/mobile_overlay';
 const Page = () => {
     // 1. Content State
     const [activeCategory, setActiveCategory] = useState<Category>(Category.ACTIONS);
-    const [activeComponent, setActiveComponent] = useState<ComponentId>(ComponentId.BUTTON);
+    const [activeComponent, setActiveComponent] = useState<ComponentId>(ComponentId.DECRYPT);
 
     // 2. Layout Logic (Hook)
     const { showLeftSidebar, setShowLeftSidebar, showRightSidebar, setShowRightSidebar } = useSidebarLogic();
