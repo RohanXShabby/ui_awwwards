@@ -3,9 +3,23 @@ import { ParallaxCards } from "@/content/Cards/parallax_card";
 import { div } from "framer-motion/client";
 import Button3D from "@/content/Actions/Button3D";
 import { useRef } from "react";
+import ParallaxGallery from "@/content/Cards/parallax_gallery";
 
 const page = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const demoImages = [
+        { src: "https://picsum.photos/id/1015/400/250", alt: "Wide 1" },
+        { src: "https://picsum.photos/id/1016/400/250", alt: "Wide 2" },
+        { src: "https://picsum.photos/id/1020/400/250", alt: "Wide 3" },
+        { src: "https://picsum.photos/id/1024/400/250", alt: "Wide 4" },
+        { src: "https://picsum.photos/id/1035/400/250", alt: "Wide 5" },
+        { src: "https://picsum.photos/id/1039/400/250", alt: "Wide 6" }
+    ];
+
+
+
+
+
     const images = [
         "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
         "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3070&q=80",
@@ -16,7 +30,7 @@ const page = () => {
 
     return (
         <>
-            <div className="h-screen overflow-y-scroll" ref={scrollRef}>
+            {/* <div className="h-screen overflow-y-scroll" ref={scrollRef}>
                 <ParallaxCards
                     images={images}
                     maxStackedCards={5}
@@ -24,8 +38,9 @@ const page = () => {
                     height="700px"
                     scrollContainerRef={scrollRef}
                 />
-            </div>
+            </div> */}
 
+            {/* Button3D */}
             <div>
                 <div className="flex py-24 gap-8 items-center justify-center">
 
@@ -51,6 +66,8 @@ const page = () => {
                     />
                 </div>
             </div>
+
+            <ParallaxGallery images={demoImages} />
         </>
     );
 };

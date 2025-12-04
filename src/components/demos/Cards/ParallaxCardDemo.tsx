@@ -232,7 +232,7 @@ function ParallaxCard({
 
             {/* Preview Area */}
             <ComponentPreview  >
-                <div className='h-[500px] overflow-y-scroll' ref={scrollRef}>
+                <div className='h-[500px] p-8 overflow-y-scroll' ref={scrollRef}>
                     <ParallaxCards
                         images={images}
                         maxStackedCards={3}
