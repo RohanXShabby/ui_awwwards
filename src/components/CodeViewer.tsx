@@ -1,8 +1,10 @@
-import React, { useState, useContext, useMemo } from 'react';
+"use client";
+
+import React, { useState, useMemo, useEffect } from 'react';
 import { Check, Copy, Terminal, ChevronDown, ChevronUp } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { ThemeContext } from '@/context/ThemeContext';
+import { useTheme } from 'next-themes';
 
 interface CodeViewerProps {
     code: string;
@@ -19,7 +21,12 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
 }) => {
     const [copied, setCopied] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    const { theme } = useContext(ThemeContext);
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Calculate if the code is long enough to need collapsing
     // You can adjust the threshold (e.g., 10 lines)
@@ -53,9 +60,10 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
     };
 
     const transparentTheme = useMemo(() => {
-        const base = theme === 'dark' ? vscDarkPlus : vs;
+        if (!mounted) return createTransparentTheme(vs);
+        const base = resolvedTheme === 'dark' ? vscDarkPlus : vs;
         return createTransparentTheme(base);
-    }, [theme]);
+    }, [resolvedTheme, mounted]);
 
     return (
         <div className="group relative rounded-xl overflow-hidden my-6 transition-colors duration-200 border border-card-border/50 shadow-sm">

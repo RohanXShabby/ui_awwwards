@@ -231,13 +231,14 @@ function ParallaxCard({
             </div>
 
             {/* Preview Area */}
-            <ComponentPreview  >
+            <ComponentPreview >
+                <div className="text-center py-8 text-7xl font-black text-muted-foreground/40">Scroll Down</div>
                 <div className='h-[500px] p-8 overflow-y-scroll' ref={scrollRef}>
                     <ParallaxCards
                         images={images}
                         maxStackedCards={3}
                         top="54px"
-                        height="500px"
+                        height="400px"
                         scrollContainerRef={scrollRef}
                     />
                 </div>
@@ -257,13 +258,18 @@ function ParallaxCard({
                 title="Usage"
                 description="This is what it does."
                 code={`   
-<div>
-<ParallaxCards
+import React, { useRef } from 'react';
+
+const scrollRef = useRef<HTMLDivElement>(null);
+
+<div className='h-[500px] p-8 overflow-y-scroll' ref={scrollRef}>
+    <ParallaxCards
     images={images}
-    maxStackedCards={5}
+    maxStackedCards={3}
     top="54px"
     height="500px"
-/>
+    scrollContainerRef={scrollRef}
+    />
 </div>
 `}
             />

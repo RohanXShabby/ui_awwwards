@@ -19,19 +19,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased custom-scrollbar min-h-screen flex flex-col bg-background text-foreground`}
       >
-        {/* Theme Initialization Script */}
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`
-            try {
-              var d = document.documentElement;
-              var t = localStorage.getItem('theme');
-              if (t) d.setAttribute('data-theme', t);
-              d.classList.add('theme-ready');
-            } catch (e) { document.documentElement.classList.add('theme-ready'); }
-          `}
-        </Script>
-
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navbar />
           <div className="flex-1 w-full max-w-[1920px] mx-auto flex flex-col relative shadow-2xl bg-background">
             <main className="flex-1 min-h-0">

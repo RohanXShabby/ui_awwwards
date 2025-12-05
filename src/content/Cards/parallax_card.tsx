@@ -37,10 +37,12 @@ export function ParallaxCards({
     const topMagnitude = parseFloat(String(top));
     const topUnit = String(top).slice(String(topMagnitude).length) || "px";
 
-    if (topUnit === "%")
+    if (topUnit === "%") {
         throw new Error(
             "Invalid `top` value: percentages (%) are not supported by <ParallaxCards/>.",
         );
+    }
+
     const containerRef = React.useRef<HTMLDivElement>(null);
     const [isSticky, setIsSticky] = React.useState(true);
 
@@ -76,10 +78,10 @@ export function ParallaxCards({
     return (
         <>
             <style>{`
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
+                html {
+                    scroll-behavior: smooth;
+                }
+            `}</style>
 
             <div
                 ref={containerRef}
@@ -93,7 +95,7 @@ export function ParallaxCards({
             >
                 {images.map((image, index) => (
                     <ParallaxCard
-                        key={`cards[${index}]`}
+                        key={`card-${index}`}
                         index={index - 1}
                         scrollYProgress={scrollYProgress}
                         scrollRatio={1 / totalCards}
@@ -101,7 +103,7 @@ export function ParallaxCards({
                         top={{
                             magnitude: topMagnitude,
                             unit: topUnit,
-                            absolute: topMagnitude + topUnit,
+                            absolute: `${topMagnitude}${topUnit}`,
                         }}
                         isSticky={isSticky}
                         forceParallax={forceParallax}
@@ -163,7 +165,7 @@ function ParallaxCard({
     const scale = useTransform(
         scrollYProgress,
         [index * scrollRatio, (index + maxStackedCards) * scrollRatio],
-        [1, 0.8],
+        [1, 0.85],
     );
 
     return (
@@ -183,6 +185,11 @@ function ParallaxCard({
                         maxHeight: forceParallax ? `calc(100vh - ${top.absolute})` : "none",
                     },
                 })}
+                transition={{
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 25,
+                }}
                 className="grid size-full origin-top overflow-hidden"
             >
                 {children}

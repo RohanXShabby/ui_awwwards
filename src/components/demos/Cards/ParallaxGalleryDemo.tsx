@@ -5,17 +5,20 @@ import ParallaxGallery from '@/content/Cards/parallax_gallery';
 import { Usecase } from '../../Usecase';
 
 export const ParallaxGalleryDemo: React.FC = () => {
+
     const images = [
-        { src: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80", alt: "Image 1" },
-        { src: "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3070&q=80", alt: "Image 2" },
-        { src: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80", alt: "Image 3" },
-        { src: "https://images.unsplash.com/photo-1682686581854-5e71f58e7e3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80", alt: "Image 4" },
-        { src: "https://images.unsplash.com/photo-1510784722466-f2aa9c52fff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80", alt: "Image 5" },
+        { src: "https://picsum.photos/id/1015/200/200", alt: "Wide 1" },
+        { src: "https://picsum.photos/id/1016/200/200", alt: "Wide 2" },
+        { src: "https://picsum.photos/id/1020/200/200", alt: "Wide 3" },
+        { src: "https://picsum.photos/id/1024/200/200", alt: "Wide 4" },
+        { src: "https://picsum.photos/id/1035/200/200", alt: "Wide 5" },
+        { src: "https://picsum.photos/id/1039/200/200", alt: "Wide 6" }
     ];
 
-    const exampleCode = `'use client';
+    const exampleCode = `
+'use client';
 
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useMemo } from "react";
 
 interface GalleryImage {
     src: string;
@@ -29,6 +32,7 @@ interface ParallaxGalleryProps {
     gap?: string;
     className?: string;
     damping?: number;
+    leftLimit?: number;
 }
 
 const ParallaxGallery: React.FC<ParallaxGalleryProps> = ({
@@ -38,12 +42,122 @@ const ParallaxGallery: React.FC<ParallaxGalleryProps> = ({
     gap = "4vmin",
     className = "",
     damping = 1200,
+    leftLimit = -200,
 }) => {
-    // ... implementation
-    return <div>...</div>
+    const trackRef = useRef<HTMLDivElement | null>(null);
+    const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+    const mouseDownAt = useRef<number | null>(null);
+    const prevPercentage = useRef<number>(0);
+    const percentage = useRef<number>(0);
+
+    const maxLeft = useMemo(() => Math.abs(leftLimit), [leftLimit]);
+
+    const handleOnDown = useCallback((clientX: number) => {
+        mouseDownAt.current = clientX;
+    }, []);
+
+    const handleOnUp = useCallback(() => {
+        mouseDownAt.current = null;
+        prevPercentage.current = percentage.current;
+    }, []);
+
+    const handleOnMove = useCallback(
+        (clientX: number) => {
+            if (mouseDownAt.current === null) return;
+            if (!trackRef.current) return;
+
+            const mouseDelta = mouseDownAt.current - clientX;
+            const maxDelta = window.innerWidth / 2;
+
+            const nextPercentageUnconstrained =
+                prevPercentage.current + (mouseDelta / maxDelta) * -100;
+
+            const nextPercentage = Math.max(
+                Math.min(nextPercentageUnconstrained, 0),
+                leftLimit
+            );
+
+            percentage.current = nextPercentage;
+
+            trackRef.current.animate(
+                {
+                    transform: \`translate(\${nextPercentage}%, 0%)\`,
+                },
+                { duration: damping, fill: "forwards" }
+            );
+
+            const rawParallax = (1 + nextPercentage / maxLeft) * 100;
+            const parallaxPos = Math.max(Math.min(rawParallax, 100), 0);
+
+            imageRefs.current.forEach((image) => {
+                if (image) {
+                    image.animate(
+                        {
+                            objectPosition: \`\${parallaxPos}% center\`,
+                        },
+                        { duration: damping, fill: "forwards" }
+                    );
+                }
+            });
+        },
+        [damping, leftLimit, maxLeft]
+    );
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const onMouseUp = () => handleOnUp();
+        const onMouseMove = (e: MouseEvent) => handleOnMove(e.clientX);
+        const onTouchEnd = () => handleOnUp();
+        const onTouchMove = (e: TouchEvent) =>
+            handleOnMove(e.touches[0].clientX);
+
+        window.addEventListener("mouseup", onMouseUp);
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("touchend", onTouchEnd);
+        window.addEventListener("touchmove", onTouchMove);
+
+        return () => {
+            window.removeEventListener("mouseup", onMouseUp);
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("touchend", onTouchEnd);
+            window.removeEventListener("touchmove", onTouchMove);
+        };
+    }, [handleOnUp, handleOnMove]);
+
+    return (
+        <div
+            className={\`relative w-full h-full bg-neutral-950 overflow-hidden select-none \${className}\`}
+            onMouseDown={(e) => handleOnDown(e.clientX)}
+            onTouchStart={(e) => handleOnDown(e.touches[0].clientX)}
+        >
+            <div
+                ref={trackRef}
+                className="flex absolute left-1/2 top-1/2 -translate-y-1/2 gap-[4vmin] will-change-transform"
+                style={{ gap }}
+            >
+                {images.map((img, index) => (
+                    <img
+                        key={index}
+                        ref={(el) => { imageRefs.current[index] = el; }}
+                        src={img.src}
+                        alt={img.alt || \`Gallery Item \${index}\`}
+                        draggable="false"
+                        className="parallax-image object-cover object-[100%_center] select-none pointer-events-none"
+                        style={{
+                            width: imageWidth,
+                            height: imageHeight,
+                        }}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 };
 
-export default ParallaxGallery;`;
+export default ParallaxGallery;
+`;
 
     return (
         <div className="w-full mx-auto space-y-8 pb-12">
@@ -56,9 +170,11 @@ export default ParallaxGallery;`;
 
             {/* Preview Area */}
             <ComponentPreview>
-                <div className="relative w-full h-[600px] overflow-hidden rounded-xl border border-card-border/30">
+                <div className="relative w-full h-[600px] overflow-hidden rounded-xl ">
                     <ParallaxGallery
                         images={images}
+                        imageHeight='300px'
+                        imageWidth='150px'
                         className="h-full bg-transparent"
                     />
                 </div>
@@ -73,12 +189,22 @@ export default ParallaxGallery;`;
                 title="Usage"
                 description="Import and use the component with an array of images."
                 code={`
+ const images = [
+        { src: "https://picsum.photos/id/1015/200/200", alt: "Wide 1" },
+        { src: "https://picsum.photos/id/1016/200/200", alt: "Wide 2" },
+        { src: "https://picsum.photos/id/1020/200/200", alt: "Wide 3" },
+        { src: "https://picsum.photos/id/1024/200/200", alt: "Wide 4" },
+        { src: "https://picsum.photos/id/1035/200/200", alt: "Wide 5" },
+        { src: "https://picsum.photos/id/1039/200/200", alt: "Wide 6" }
+    ];
+
+
 <ParallaxGallery
-    images={[
-        { src: "image1.jpg", alt: "Image 1" },
-        { src: "image2.jpg", alt: "Image 2" },
-    ]}
-/>
+    images={images}
+    imageHeight='300px'
+    imageWidth='150px'
+    className="h-[100px] bg-transparent"
+    />
 `}
             />
 

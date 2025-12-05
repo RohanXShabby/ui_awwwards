@@ -15,13 +15,13 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
     align = 'center'
 }) => {
     return (
-        <div className={cn("flex flex-col gap-4", className)}>
+        <div className={cn("flex flex-col w-full", className)}>
             <div className="flex items-center justify-between shrink-0">
                 <h2 className="text-lg font-semibold text-foreground tracking-tight">{title}</h2>
             </div>
 
-            {/* Window Container - Added 'flex-1' and 'flex flex-col' */}
-            <div className="flex-1 flex flex-col rounded-3xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-md bg-card-bg/20 backdrop-blur-md">
+            {/* Window Containe*/}
+            <div className=" flex flex-col w-full rounded-3xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-md bg-card-bg/20 backdrop-blur-md">
 
                 {/* Header Bar */}
                 <div className="px-6 py-4 border-b sticky top-0 border-white/5 bg-card-bg/40 rounded-t-3xl shrink-0">
@@ -32,14 +32,11 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
                     </div>
                 </div>
 
-                {/* Interactive Canvas - Added 'flex-1' so background fills height */}
+                {/* Interactive Canvas*/}
                 <div className={cn(
-                    "flex-1 p-8 md:p-12 min-h-[200px]",
-                    align === 'center' && "flex items-center justify-center",
-                    align === 'start' && "block",
-                    align === 'end' && "flex flex-col items-end"
+                    "w-full overflow-hidden min-h-[200px] flex flex-col items-center justify-center",
                 )}>
-                    <div className="w-fit max-w-2xl mx-auto">
+                    <div className="w-full h-full">
                         {children}
                     </div>
                 </div>
