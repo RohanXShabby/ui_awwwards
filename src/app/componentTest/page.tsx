@@ -29,7 +29,7 @@ const page = () => {
     ];
 
     return (
-        <>
+        <> 
             {/* <div className="h-screen overflow-y-scroll" ref={scrollRef}>
                 <ParallaxCards
                     images={images}
