@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { Search, Mail } from 'lucide-react';

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { Loader2, Mail, AlertCircle, Info, CheckCircle2, XCircle } from 'lucide-react';
