@@ -8,7 +8,7 @@ export const MobileOverlay = ({ isVisible, onClose }: MobileOverlayProps) => {
 
     return (
         <div
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px] lg:hidden animate-in fade-in duration-300"
+            className="fixed inset-0 z-50 bg-black/40 lg:hidden animate-in fade-in duration-300"
             onClick={onClose}
         />
     );

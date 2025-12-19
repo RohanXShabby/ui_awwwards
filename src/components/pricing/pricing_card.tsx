@@ -12,7 +12,7 @@ export const PricingCard = ({ plan, billingCycle }: PricingCardProps) => {
     return (
         <div
             className={`
-                relative flex flex-col p-8 rounded-3xl transition-all duration-300
+                relative flex flex-col p-8 rounded-md transition-all duration-300
                 ${isPopular
                     ? 'bg-card-bg/50 border-2 border-accent shadow-2xl shadow-accent/10 scale-105 z-10'
                     : 'bg-card-bg/30 border border-card-border hover:border-accent/30 hover:shadow-lg'}
@@ -43,7 +43,7 @@ export const PricingCard = ({ plan, billingCycle }: PricingCardProps) => {
             {/* CTA Button */}
             <button
                 className={`
-                    w-full py-3 rounded-xl text-sm font-bold transition-all duration-200 mb-8
+                    w-full py-3 rounded-md text-sm font-bold transition-all duration-200 mb-8
                     ${isPopular
                         ? 'bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/20'
                         : 'bg-foreground text-background hover:bg-foreground/80'}

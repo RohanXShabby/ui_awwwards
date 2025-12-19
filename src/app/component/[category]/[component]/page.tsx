@@ -106,7 +106,7 @@ const Page = () => {
                 {/* --- LEFT SIDEBAR --- */}
                 <aside className={`
                     fixed inset-y-0 left-0 z-150 lg:w-72 lg:static lg:z-auto
-                    bg-background flex flex-col shadow-2xl lg:shadow-none
+                    bg-background flex flex-col
                     transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
                     ${showLeftSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 `}>
@@ -125,7 +125,7 @@ const Page = () => {
 
                 {/* --- CENTER CONTENT --- */}
                 <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-transparent">
-                    <div className="flex-1 overflow-y-auto scroll-smooth p-4 sm:p-8 lg:p-12">
+                    <div className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar p-4 sm:p-8 lg:p-12">
                         <div className="max-w-6xl mx-auto min-h-[500px] flex flex-col">
                             <ComponentView
                                 activeCategory={activeCategory}
@@ -138,7 +138,7 @@ const Page = () => {
                 {/* --- RIGHT SIDEBAR --- */}
                 <aside className={`
                     fixed inset-y-0 right-0 z-100 lg:w-72 lg:static lg:z-auto
-                    bg-background flex flex-col shadow-2xl lg:shadow-none
+                    bg-background flex flex-col
                     transition-transform duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
                     ${showRightSidebar ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
                 `}>

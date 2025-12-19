@@ -14,7 +14,7 @@ export const TemplateFilters = ({
     setSearchQuery
 }: TemplateFiltersProps) => {
     return (
-        <div className="sticky top-4 z-40 mb-12 rounded-xl border border-card-border bg-background/80 backdrop-blur-md shadow-sm p-2 flex flex-col md:flex-row gap-4 items-center justify-between animate-in fade-in zoom-in-95 duration-500">
+        <div className="sticky top-4 z-40 mb-12 rounded-md border border-card-border bg-background/80 backdrop-blur-md shadow-sm p-2 flex flex-col md:flex-row gap-4 items-center justify-between animate-in fade-in zoom-in-95 duration-500">
             {/* Tabs */}
             <div className="flex p-1 bg-card-bg rounded-lg w-full md:w-auto border border-card-border/50">
                 {(['all', 'free', 'paid'] as const).map((tab) => (

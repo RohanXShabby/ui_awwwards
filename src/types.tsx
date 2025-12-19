@@ -10,9 +10,7 @@ export enum TopLevelView {
 export enum Category {
     ACTIONS = 'Actions',
     CARDS = 'Cards',
-    FORMS = 'Forms',
-    DATA_DISPLAY = 'Data Display',
-    FEEDBACK = 'Feedback',
+    BACKGROUND = 'Background',
 }
 
 export enum ComponentId {
@@ -21,11 +19,7 @@ export enum ComponentId {
     PARALLAX_CARD = 'PARALLAX_CARD',
     DECRYPT = 'DECRYPT',
     BUTTON = 'BUTTON',
-    INPUT = 'INPUT',
-    CARD = 'CARD',
-    AVATAR = 'AVATAR',
-    BADGE = 'BADGE',
-    ALERT = 'ALERT',
+    AURORA = 'AURORA',
 }
 
 export interface ComponentDoc {

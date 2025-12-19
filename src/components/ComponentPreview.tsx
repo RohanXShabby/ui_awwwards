@@ -17,18 +17,18 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
     return (
         <div className={cn("flex flex-col w-full", className)}>
             <div className="flex items-center justify-between shrink-0">
-                <h2 className="text-lg font-semibold text-foreground tracking-tight">{title}</h2>
+                <h2 className="text-lg font-semibold text-foreground pb-4 tracking-tight">{title}</h2>
             </div>
 
             {/* Window Containe*/}
-            <div className=" flex flex-col w-full rounded-3xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-md bg-card-bg/20 backdrop-blur-md">
+            <div className="flex flex-col w-full rounded-md border border-card-border bg-card">
 
                 {/* Header Bar */}
-                <div className="px-6 py-4 border-b sticky top-0 border-white/5 bg-card-bg/40 rounded-t-3xl shrink-0">
-                    <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-500/40"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500/40"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500/40"></div>
+                <div className="px-4 py-3 border-b sticky top-0 border-card-border bg-card-bg backdrop-blur-sm rounded-t-md shrink-0 flex items-center justify-between">
+                    <div className="flex gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
                     </div>
                 </div>
 

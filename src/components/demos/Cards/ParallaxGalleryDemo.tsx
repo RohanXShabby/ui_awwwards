@@ -8,12 +8,12 @@ import { Usecase } from '../../Usecase';
 export const ParallaxGalleryDemo: React.FC = () => {
 
     const images = [
-        { src: "https://picsum.photos/id/1015/200/200", alt: "Wide 1" },
-        { src: "https://picsum.photos/id/1016/200/200", alt: "Wide 2" },
-        { src: "https://picsum.photos/id/1020/200/200", alt: "Wide 3" },
-        { src: "https://picsum.photos/id/1024/200/200", alt: "Wide 4" },
-        { src: "https://picsum.photos/id/1035/200/200", alt: "Wide 5" },
-        { src: "https://picsum.photos/id/1039/200/200", alt: "Wide 6" }
+        { src: "https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=", alt: "Wide 1" },
+        { src: "https://img.freepik.com/free-photo/courage-man-jump-through-gap-hill-business-concept-idea_1323-262.jpg?semt=ais_hybrid&w=740&q=80", alt: "Wide 2" },
+        { src: "https://img.freepik.com/premium-photo/mesmerizing-vibrant-nebula-with-celestial-planets-cosmic-elements_994764-154605.jpg?semt=ais_hybrid&w=740&q=80", alt: "Wide 3" },
+        { src: "https://backiee.com/static/wallpapers/560x315/420431.jpg", alt: "Wide 4" },
+        { src: "https://aboutmurals.ca/wp-content/uploads/2021/08/Space-Earth-Wallpaper-About-Murals.jpg", alt: "Wide 5" },
+        { src: "https://m.media-amazon.com/images/I/71YNv7REw4S._AC_UF894,1000_QL80_.jpg", alt: "Wide 6" }
     ];
 
     const exampleCode = `
@@ -171,7 +171,7 @@ export default ParallaxGallery;
 
             {/* Preview Area */}
             <ComponentPreview>
-                <div className="relative w-full h-[600px] overflow-hidden rounded-xl ">
+                <div className="relative w-full h-[400px] overflow-hidden rounded-md ">
                     <ParallaxGallery
                         images={images}
                         imageHeight='300px'
@@ -214,7 +214,7 @@ export default ParallaxGallery;
                 <h2 className="text-2xl font-semibold text-foreground">API Reference</h2>
                 <div className="space-y-4">
                     <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Props</h3>
-                    <div className="rounded-xl overflow-hidden bg-card-bg/20 ring-1 ring-card-border/30">
+                    <div className="rounded-md overflow-hidden bg-card-bg/20 ring-1 ring-card-border/30">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>

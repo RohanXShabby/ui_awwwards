@@ -33,7 +33,7 @@ export const PricingFAQ = () => {
                         <div
                             key={index}
                             className={`
-                                group rounded-xl border transition-all duration-300 overflow-hidden
+                                group rounded-md border transition-all duration-300 overflow-hidden
                                 ${isOpen
                                     ? 'bg-card-bg border-accent/50 shadow-lg shadow-accent/5'
                                     : 'bg-card-bg/30 border-card-border hover:border-accent/30'}

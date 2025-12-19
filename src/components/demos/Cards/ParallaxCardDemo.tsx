@@ -127,7 +127,7 @@ export function ParallaxCards({
                         <img
                             src={image}
                             alt={\`Parallax card \${index + 1}\`}
-                            className="size-full object-cover rounded-xl"
+                            className="size-full object-cover rounded-md"
                         />
                     </ParallaxCard>
                 ))}
@@ -291,7 +291,7 @@ const scrollRef = useRef<HTMLDivElement>(null);
                     {/* Props Table */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Props</h3>
-                        <div className="rounded-xl overflow-hidden bg-card-bg/20 ring-1 ring-card-border/30">
+                        <div className="rounded-md overflow-hidden bg-card-bg/20 ring-1 ring-card-border/30">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead>

@@ -15,7 +15,7 @@ export const ComponentView = ({ activeCategory, activeComponent }: ComponentView
     if (!componentEntry) {
         return (
             <div className="flex flex-col items-center justify-center h-[50vh] text-center px-4 animate-in fade-in zoom-in-95 duration-500">
-                <div className="w-20 h-20 rounded-3xl bg-card-bg border border-card-border flex items-center justify-center mb-6 shadow-xl shadow-accent/5">
+                <div className="w-20 h-20 rounded-md bg-card-bg border border-card-border flex items-center justify-center mb-6">
                     <Layers className="w-10 h-10 text-muted-foreground/50" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-2">No Component Selected</h3>
@@ -42,18 +42,18 @@ export const ComponentView = ({ activeCategory, activeComponent }: ComponentView
             </div>
 
             {/* Preview Box */}
-            <div className="rounded-2xl border border-card-border bg-card-bg/30 backdrop-blur-sm overflow-hidden shadow-sm">
-                <div className="p-4 border-b border-card-border bg-card-bg/50 flex items-center gap-2">
-                    <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-error/40"></div>
-                        <div className="w-3 h-3 rounded-full bg-warning/40"></div>
-                        <div className="w-3 h-3 rounded-full bg-success/40"></div>
+            <div className="rounded-md border border-card-border bg-card overflow-hidden">
+                <div className="px-4 py-3 border-b border-card-border bg-card-bg flex items-center gap-2">
+                    <div className="flex gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-warning/40"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-success/40"></div>
                     </div>
-                    <div className="ml-4 px-3 py-1 rounded-md bg-background text-xs font-mono text-muted-foreground border border-card-border/50">
+                    <div className="ml-4 px-3 py-1 rounded-md bg-background text-[10px] font-mono text-muted-foreground border border-card-border/50">
                         {` ${activeComponent.toLowerCase()}.tsx`}
                     </div>
                 </div>
-                <div className="p-8 md:p-12 flex justify-center items-center min-h-[300px] bg-background opacity-100">
+                <div className="p-6 md:p-8 flex justify-center items-center min-h-[300px] bg-background opacity-100">
                     <ComponentDoc />
                 </div>
             </div>

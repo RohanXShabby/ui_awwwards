@@ -34,7 +34,7 @@ const ThemeShowcase: React.FC = () => {
                     return (
                         <section
                             key={c.key}
-                            className={`rounded-xl border p-4 shadow-md h-40 flex flex-col justify-between transition-all ${c.bg} border-card-border`}
+                            className={`rounded-md border p-4 shadow-md h-40 flex flex-col justify-between transition-all ${c.bg} border-card-border`}
                             aria-label={c.label}
                         >
                             <div>

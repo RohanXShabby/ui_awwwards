@@ -9,7 +9,7 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
     const isPaid = template.type === 'paid';
 
     return (
-        <div className="group flex flex-col rounded-2xl border border-card-border bg-card-bg/30 backdrop-blur-sm overflow-hidden hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+        <div className="group flex flex-col rounded-md border border-card-border bg-card-bg/30 backdrop-blur-sm overflow-hidden hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
             {/* Thumbnail */}
             {/* Note: In a real app, replace the bg-gradient classes in data with actual images, 
                 but for now we ensure the container respects theme rounding/borders */}

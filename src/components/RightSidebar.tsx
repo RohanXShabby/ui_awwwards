@@ -21,10 +21,10 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
 
   // 🎨 STYLING CONFIG
   const hoverClass = "bg-accent/50";
-  const activeClass = "bg-accent border-l border-background shadow-sm";
+  const activeClass = "bg-accent border-l border-background";
 
   return (
-    <div className="relative z-100 h-full flex flex-col overflow-y-auto py-6 bg-background/50 backdrop-blur-sm">
+    <div className="relative z-100 h-full flex flex-col overflow-y-auto py-6 bg-background">
       <div className="px-6 mb-4">
         <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
           {activeCategory} Components
@@ -46,7 +46,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
                 onClick={() => onSelectComponent(comp.id)}
                 onMouseEnter={() => setHoveredComponent(comp.id)}
                 className={cn(
-                  "relative flex items-center justify-between w-full px-4 py-2.5 rounded-xl transition-all duration-200 cursor-pointer mb-1 outline-none group z-10 text-left",
+                  "relative flex items-center justify-between w-full px-4 py-2.5 rounded-md transition-all duration-200 cursor-pointer mb-1 outline-none group z-10 text-left",
                   isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
                 )}
               >
@@ -57,7 +57,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
                 {isHovered && (
                   <motion.div
                     layoutId="right-hover-pill"
-                    className={cn("absolute inset-0 rounded-xl z-[-1]", hoverClass)}
+                    className={cn("absolute inset-0 rounded-md z-[-1]", hoverClass)}
                     transition={{
                       type: "spring",
                       stiffness: 500,
@@ -72,7 +72,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
                 {isActive && (
                   <motion.div
                     layoutId="right-active-pill"
-                    className={cn("absolute inset-0 rounded-xl z-[-1]", activeClass)}
+                    className={cn("absolute inset-0 rounded-md z-[-1]", activeClass)}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}

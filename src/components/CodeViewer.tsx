@@ -66,7 +66,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
     }, [resolvedTheme, mounted]);
 
     return (
-        <div className="group relative rounded-xl overflow-hidden my-6 transition-colors duration-200 border border-card-border/50 shadow-sm">
+        <div className="group relative rounded-md overflow-hidden my-6 transition-colors duration-200 border border-card-border/50 shadow-sm">
 
             {/* Header */}
             {(title || language) && (

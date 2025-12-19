@@ -47,11 +47,10 @@ const Navbar = () => {
 
                 // 1. LAYOUT LOGIC
                 isHome
-                    ? "w-[92%] md:w-[70%] max-w-6xl rounded-2xl md:rounded-4xl border border-white/10 shadow-lg mt-2 md:mt-4 py-3 px-4 md:px-6"
+                    ? "w-[92%] md:w-[70%] max-w-6xl rounded-md md:rounded-4xl border border-white/10 shadow-lg mt-2 md:mt-4 py-3 px-4 md:px-6"
                     // ^ Added max-w-6xl: Prevents floating island from being too wide on 4k screens
 
                     : "w-full max-w-[1920px] rounded-none border-b border-white/5 py-3 px-4 md:px-12"
-                // ^ Added max-w-[1920px]: Matches your RootLayout constraint so lines align perfectly
             )}>
 
                 {/* Left: Logo */}
@@ -71,7 +70,7 @@ const Navbar = () => {
                     onMouseLeave={() => setHoveredPath(null)}
                 >
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href
+                        const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`)
                         const isHovered = hoveredPath === item.href
 
                         return (
@@ -146,16 +145,16 @@ const Navbar = () => {
                 isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
             )}>
                 {/* Added max-w-[1920px] here too just in case */}
-                <div className="w-full max-w-[1920px] mx-auto bg-card/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-xl flex flex-col gap-1">
+                <div className="w-full max-w-[1920px] mx-auto bg-card/90 backdrop-blur-xl border border-white/10 rounded-md p-2 shadow-xl flex flex-col gap-1">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href
+                        const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`)
                         return (
                             <Link
                                 key={item.href}
                                 href={item.href}
                                 onClick={() => setIsOpen(false)}
                                 className={cn(
-                                    "px-4 py-3 rounded-xl text-sm font-medium transition-colors",
+                                    "px-4 py-3 rounded-md text-sm font-medium transition-colors",
                                     isActive ? "bg-accent/10 text-accent" : "text-muted-foreground hover:bg-white/5"
                                 )}
                             >

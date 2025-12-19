@@ -112,7 +112,7 @@ export function ParallaxCards({
                         <img
                             src={image}
                             alt={`Parallax card ${index + 1}`}
-                            className="size-full object-cover rounded-xl"
+                            className="size-full object-cover rounded-md"
                         />
                     </ParallaxCard>
                 ))}

@@ -55,7 +55,7 @@ const Page = () => {
                 ) : (
                     // Empty State
                     <div className="flex flex-col items-center justify-center py-20 animate-in fade-in zoom-in-95">
-                        <div className="w-20 h-20 bg-card-bg rounded-2xl flex items-center justify-center mb-4 border border-card-border">
+                        <div className="w-20 h-20 bg-card-bg rounded-md flex items-center justify-center mb-4 border border-card-border">
                             <Search className="w-10 h-10 text-muted-foreground/30" />
                         </div>
                         <h3 className="text-xl font-semibold mb-2 text-foreground">No templates found</h3>

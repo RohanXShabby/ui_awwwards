@@ -14,7 +14,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
 
   // 🎨 STYLING
   const hoverClass = "bg-accent/50";
-  const activeClass = "bg-accent border-l border-background shadow-sm";
+  const activeClass = "bg-accent border-l border-background";
 
   return (
     <div className="h-full flex flex-col overflow-y-auto py-6 bg-background ">
@@ -41,7 +41,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
               onClick={() => onSelectCategory(meta.id)}
               onMouseEnter={() => setHoveredCategory(meta.id)}
               className={cn(
-                "relative flex items-center gap-3 px-4 py-3 w-full text-left rounded-xl transition-colors duration-200 outline-none group z-10",
+                "relative flex items-center gap-3 px-4 py-3 w-full text-left rounded-md transition-colors duration-200 outline-none group z-10",
                 isActive ? "text-primary font-medium" : "text-muted-foreground font-normal"
               )}
             >
@@ -49,7 +49,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
               {isHovered && (
                 <motion.div
                   layoutId="hover-pill"
-                  className={cn("absolute inset-0 rounded-xl z-[-1]", hoverClass)}
+                  className={cn("absolute inset-0 rounded-md z-[-1]", hoverClass)}
                   transition={{
                     type: "spring",
                     stiffness: 500,
@@ -62,7 +62,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
               {isActive && (
                 <motion.div
                   layoutId="active-pill"
-                  className={cn("absolute inset-0 rounded-xl z-[-1]", activeClass)}
+                  className={cn("absolute inset-0 rounded-md z-[-1]", activeClass)}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
@@ -88,7 +88,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
 
       {/* Footer Request Box */}
       <div className="mt-auto px-4 pt-6">
-        <div className="p-4 bg-linear-to-br from-secondary/50 to-background rounded-xl">
+        <div className="p-4 bg-linear-to-br from-secondary/50 to-background rounded-md">
           <p className="text-xs text-muted-foreground mb-3">Missing a specific component?</p>
           <button className="w-full py-2 text-xs font-semibold text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors flex items-center justify-start">
             Request Category
