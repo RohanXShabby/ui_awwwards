@@ -74,7 +74,7 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
                     ))}
                 </div>
 
-                {/* Actions */}
+                {/* Buttons */}
                 <div className="flex gap-3 mt-auto">
                     <button className="flex-1 py-2.5 rounded-lg border border-card-border bg-card-bg hover:bg-accent/10 hover:border-accent/50 text-sm font-medium transition-all flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground">
                         <Globe className="w-4 h-4" />

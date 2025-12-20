@@ -8,7 +8,7 @@ export enum TopLevelView {
 }
 
 export enum Category {
-    ACTIONS = 'Actions',
+    Buttons = 'Buttons',
     CARDS = 'Cards',
     BACKGROUND = 'Background',
 }

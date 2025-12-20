@@ -8,8 +8,8 @@ import { Usecase } from '../../Usecase';
 export const ParallaxGalleryDemo: React.FC = () => {
 
     const images = [
-        { src: "https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=", alt: "Wide 1" },
-        { src: "https://img.freepik.com/free-photo/courage-man-jump-through-gap-hill-business-concept-idea_1323-262.jpg?semt=ais_hybrid&w=740&q=80", alt: "Wide 2" },
+        { src: "https://media.istockphoto.com/id/182792016/photo/solar-system.jpg?s=612x612&w=0&k=20&c=zzdw1BE3GjWcHyxiIeDlMiGqCyBnvdaJDwZCIX4h18s=", alt: "Wide 1" },
+        { src: "https://science.nasa.gov/wp-content/uploads/2023/10/edu-solar-system-large.png?w=500", alt: "Wide 2" },
         { src: "https://img.freepik.com/premium-photo/mesmerizing-vibrant-nebula-with-celestial-planets-cosmic-elements_994764-154605.jpg?semt=ais_hybrid&w=740&q=80", alt: "Wide 3" },
         { src: "https://backiee.com/static/wallpapers/560x315/420431.jpg", alt: "Wide 4" },
         { src: "https://aboutmurals.ca/wp-content/uploads/2021/08/Space-Earth-Wallpaper-About-Murals.jpg", alt: "Wide 5" },

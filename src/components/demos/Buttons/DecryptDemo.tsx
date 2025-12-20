@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { Loader2, Mail, AlertCircle, Info, CheckCircle2, XCircle } from 'lucide-react';
 import { ComponentPreview } from '../../ComponentPreview';
-import DecryptedText from '@/content/Actions/decrypt';
+import DecryptedText from '@/content/Buttons/decrypt';
 
 export const DecryptDoc: React.FC = () => {
     const [isHovered1, setIsHovered1] = useState(false);
@@ -222,7 +222,7 @@ export default function DecryptedText({
             <div>
                 <h1 className="text-3xl font-bold text-foreground mb-4">Decrypt Button</h1>
                 <p className="text-muted-foreground text-lg">
-                    An interactive element used to trigger actions. Includes support for <span className="opacity-70 bg-card-bg px-1 rounded">text</span>, <span className="opacity-70 bg-card-bg px-1 rounded">string</span>, <span className="opacity-70 bg-card-bg px-1 rounded">speed</span>, <span className="opacity-70 bg-card-bg px-1 rounded">maxIterations</span>, <span className="opacity-70 bg-card-bg px-1 rounded">sequential</span>, <span className="opacity-70 bg-card-bg px-1 rounded">revealDirection</span>, <span className="opacity-70 bg-card-bg px-1 rounded">useOriginalCharsOnly</span>, <span className="opacity-70 bg-card-bg px-1 rounded">className</span>, <span className="opacity-70 bg-card-bg px-1 rounded">characters</span>, <span className="opacity-70 bg-card-bg px-1 rounded">encryptedClassName</span>, <span className="opacity-70 bg-card-bg px-1 rounded">parentClassName</span>, <span className="opacity-70 bg-card-bg px-1 rounded">animateOn</span>.
+                    An interactive element used to trigger Buttons. Includes support for <span className="opacity-70 bg-card-bg px-1 rounded">text</span>, <span className="opacity-70 bg-card-bg px-1 rounded">string</span>, <span className="opacity-70 bg-card-bg px-1 rounded">speed</span>, <span className="opacity-70 bg-card-bg px-1 rounded">maxIterations</span>, <span className="opacity-70 bg-card-bg px-1 rounded">sequential</span>, <span className="opacity-70 bg-card-bg px-1 rounded">revealDirection</span>, <span className="opacity-70 bg-card-bg px-1 rounded">useOriginalCharsOnly</span>, <span className="opacity-70 bg-card-bg px-1 rounded">className</span>, <span className="opacity-70 bg-card-bg px-1 rounded">characters</span>, <span className="opacity-70 bg-card-bg px-1 rounded">encryptedClassName</span>, <span className="opacity-70 bg-card-bg px-1 rounded">parentClassName</span>, <span className="opacity-70 bg-card-bg px-1 rounded">animateOn</span>.
                 </p>
             </div>
 

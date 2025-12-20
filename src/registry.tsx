@@ -1,7 +1,7 @@
 import React from 'react';
 import { Category, ComponentId } from './types';
-import { DecryptDoc } from './components/demos/Actions/DecryptDemo';
-import { Button3dDemo } from './components/demos/Actions/Button3dDemo';
+import { DecryptDoc } from './components/demos/Buttons/DecryptDemo';
+import { Button3dDemo } from './components/demos/Buttons/Button3dDemo';
 import { ParallaxCardDemo } from './components/demos/Cards/ParallaxCardDemo';
 import { ParallaxGalleryDemo } from './components/demos/Cards/ParallaxGalleryDemo';
 import { AuroraDemo } from './components/demos/Background/AuroraDemo';
@@ -28,7 +28,7 @@ const normalizeComponentSlug = (value: string) =>
 
 // Defines the available categories and their metadata (icons, labels)
 export const CATEGORY_METADATA: CategoryMeta[] = [
-    { id: Category.ACTIONS, label: 'Actions', icon: ToggleLeft },
+    { id: Category.Buttons, label: 'Buttons', icon: ToggleLeft },
     { id: Category.CARDS, label: 'Cards', icon: Layers2 },
     { id: Category.BACKGROUND, label: 'Background', icon: Sparkles },
 ];
@@ -38,8 +38,8 @@ export const COMPONENT_REGISTRY: ComponentEntry[] = [
     // Background
     { id: ComponentId.AURORA, label: 'Aurora Background', category: Category.BACKGROUND, component: AuroraDemo },
     // Action
-    { id: ComponentId.DECRYPT, label: 'Decrypt', category: Category.ACTIONS, component: DecryptDoc },
-    { id: ComponentId.BUTTON_3D, label: 'Button 3D', category: Category.ACTIONS, component: Button3dDemo },
+    { id: ComponentId.DECRYPT, label: 'Decrypt', category: Category.Buttons, component: DecryptDoc },
+    { id: ComponentId.BUTTON_3D, label: 'Button 3D', category: Category.Buttons, component: Button3dDemo },
     // Cards
     { id: ComponentId.PARALLAX_GALLERY, label: 'Parallax Gallery', category: Category.CARDS, component: ParallaxGalleryDemo },
     { id: ComponentId.PARALLAX_CARD, label: 'Parallax Card', category: Category.CARDS, component: ParallaxCardDemo },

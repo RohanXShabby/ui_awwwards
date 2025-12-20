@@ -1,7 +1,7 @@
 'use client';
 import { ParallaxCards } from "@/content/Cards/parallax_card";
 import { div } from "framer-motion/client";
-import Button3D from "@/content/Actions/Button3D";
+import Button3D from "@/content/Buttons/Button3D";
 import { useRef } from "react";
 import ParallaxGallery from "@/content/Cards/parallax_gallery";
 
@@ -29,7 +29,7 @@ const page = () => {
     ];
 
     return (
-        <> 
+        <>
             {/* <div className="h-screen overflow-y-scroll" ref={scrollRef}>
                 <ParallaxCards
                     images={images}

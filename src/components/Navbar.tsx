@@ -103,7 +103,7 @@ const Navbar = () => {
                     })}
                 </div>
 
-                {/* Right: Actions */}
+                {/* Right: Buttons */}
                 <div className="flex items-center gap-3">
                     <Link
                         href="https://github.com/your-username/your-repo"

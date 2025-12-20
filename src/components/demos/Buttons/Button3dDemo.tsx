@@ -2,7 +2,7 @@
 import React from 'react';
 import { CodeViewer } from '../../CodeViewer';
 import { ComponentPreview } from '../../ComponentPreview';
-import Button3D from '@/content/Actions/Button3D';
+import Button3D from '@/content/Buttons/Button3D';
 
 export const Button3dDemo: React.FC = () => {
 
@@ -140,7 +140,7 @@ export default Button3D;
 
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4">Manual Installation</h2>
-        <CodeViewer code={exampleCode} language="tsx" title="content/Actions/Button3D.tsx" />
+        <CodeViewer code={exampleCode} language="tsx" title="content/Buttons/Button3D.tsx" />
       </div>
 
       {/* API Reference */}

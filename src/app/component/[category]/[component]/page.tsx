@@ -20,7 +20,7 @@ import { MobileHeader } from '@/components/docs/mobile_header';
 import { ComponentView } from '@/components/docs/component_view';
 import { MobileOverlay } from '@/components/docs/mobile_overlay';
 
-const DEFAULT_CATEGORY = Category.ACTIONS;
+const DEFAULT_CATEGORY = Category.Buttons;
 const DEFAULT_COMPONENT = ComponentId.DECRYPT;
 
 const buildPath = (category: Category, component: ComponentId) =>
