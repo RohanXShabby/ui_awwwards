@@ -13,8 +13,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
   const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
 
   // 🎨 STYLING
-  const hoverClass = "bg-accent/50";
-  const activeClass = "bg-accent border-l border-background";
 
   return (
     <div className="h-full flex flex-col overflow-y-auto py-6 bg-background ">
@@ -27,7 +25,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
 
       {/* Navigation List */}
       <nav
-        className="px-3 space-y-1"
+        className="px-3 space-y-1 relative"
         onMouseLeave={() => setHoveredCategory(null)}
       >
         {CATEGORY_METADATA.map((meta) => {
@@ -35,48 +33,43 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeCategory, onSele
           const isActive = activeCategory === meta.id;
           const isHovered = hoveredCategory === meta.id;
 
+          // Indicator should show on hovered item, or on active item if nothing is hovered
+          const showIndicator = isHovered || (isActive && !hoveredCategory);
+
           return (
             <button
               key={meta.id}
               onClick={() => onSelectCategory(meta.id)}
               onMouseEnter={() => setHoveredCategory(meta.id)}
               className={cn(
-                "relative flex items-center gap-3 px-4 py-3 w-full text-left rounded-md transition-colors duration-200 outline-none group z-10",
-                isActive ? "text-primary font-medium" : "text-muted-foreground font-normal"
+                "relative flex items-center gap-3 px-4 py-3 w-full text-left rounded-md transition-all duration-200 outline-none group z-10",
+                isActive ? "text-accent font-medium" : "text-muted-foreground font-normal hover:text-foreground"
               )}
             >
-              {/* 1. SLIDING HOVER BACKGROUND*/}
-              {isHovered && (
+              {/* VERTICAL INDICATOR BAR */}
+              {showIndicator && (
                 <motion.div
-                  layoutId="hover-pill"
-                  className={cn("absolute inset-0 rounded-md z-[-1]", hoverClass)}
+                  layoutId="sidebar-indicator"
+                  className="absolute left-0 w-[2px] bg-accent rounded-r-full h-1/2 top-1/2 -translate-y-1/2 z-20"
+                  initial={false}
                   transition={{
                     type: "spring",
                     stiffness: 500,
-                    damping: 30
+                    damping: 35
                   }}
                 />
               )}
 
-              {/* 2. ACTIVE BACKGROUND*/}
-              {isActive && (
-                <motion.div
-                  layoutId="active-pill"
-                  className={cn("absolute inset-0 rounded-md z-[-1]", activeClass)}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-
-              {/* 3. ICON & TEXT */}
+              {/* ICON & TEXT */}
               <span className="relative z-10 flex items-center gap-3">
                 <Icon className={cn(
                   "w-4 h-4 transition-transform duration-300",
-                  isHovered ? "scale-110 text-foreground" : "",
-                  isActive ? "text-primary" : "text-muted-foreground"
+                  isHovered ? "scale-110 text-accent" : "",
+                  isActive ? "text-accent" : "text-muted-foreground"
                 )} />
                 <span className={cn(
                   "text-sm transition-colors",
-                  isHovered && !isActive ? "text-foreground" : ""
+                  isHovered || isActive ? "text-foreground" : ""
                 )}>
                   {meta.label}
                 </span>

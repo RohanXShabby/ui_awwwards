@@ -4,9 +4,30 @@ import { CodeViewer } from '../../CodeViewer';
 import { ComponentPreview } from '../../ComponentPreview';
 import ParallaxGallery from '@/content/Cards/parallax_gallery';
 import { Usecase } from '../../Usecase';
+import { MoveLeft, MoveRight } from 'lucide-react';
+import { useRef, useState } from "react"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 
 export const ParallaxGalleryDemo: React.FC = () => {
 
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [visible, setVisible] = useState(false)
+
+    // Raw motion values (no re-render)
+    const x = useMotionValue(0)
+    const y = useMotionValue(0)
+
+    // Smooth spring (controls softness)
+    const springX = useSpring(x, { stiffness: 300, damping: 30 })
+    const springY = useSpring(y, { stiffness: 300, damping: 30 })
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!containerRef.current) return
+
+        const rect = containerRef.current.getBoundingClientRect()
+        x.set(e.clientX - rect.left)
+        y.set(e.clientY - rect.top)
+    }
     const images = [
         { src: "https://media.istockphoto.com/id/182792016/photo/solar-system.jpg?s=612x612&w=0&k=20&c=zzdw1BE3GjWcHyxiIeDlMiGqCyBnvdaJDwZCIX4h18s=", alt: "Wide 1" },
         { src: "https://science.nasa.gov/wp-content/uploads/2023/10/edu-solar-system-large.png?w=500", alt: "Wide 2" },
@@ -171,11 +192,37 @@ export default ParallaxGallery;
 
             {/* Preview Area */}
             <ComponentPreview>
-                <div className="relative w-full h-[400px] overflow-hidden rounded-md ">
+                <div
+                    ref={containerRef}
+                    className="relative w-full h-[400px] overflow-hidden rounded-md"
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={() => setVisible(true)}
+                    onMouseLeave={() => setVisible(false)}
+                >
+                    {/* Cursor follower */}
+                    <motion.div
+                        className="pointer-events-none absolute z-20
+                     flex items-center justify-center text-center text-sm font-bold
+                     bg-foreground text-background
+                     rounded-full h-28 w-28"
+                        style={{
+                            left: springX,
+                            top: springY,
+                            translateX: "-50%",
+                            translateY: "-50%",
+                        }}
+                        animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <MoveLeft className="mr-1" />
+                        Drag <br /> Me
+                        <MoveRight className="ml-1" />
+                    </motion.div>
+
                     <ParallaxGallery
                         images={images}
-                        imageHeight='300px'
-                        imageWidth='150px'
+                        imageHeight="300px"
+                        imageWidth="150px"
                         className="h-full bg-transparent"
                     />
                 </div>

@@ -20,8 +20,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
   const availableComponents = getComponentsByCategory(activeCategory);
 
   // 🎨 STYLING CONFIG
-  const hoverClass = "bg-accent/50";
-  const activeClass = "bg-accent border-l border-background";
+
 
   return (
     <div className="relative z-100 h-full flex flex-col overflow-y-auto py-6 bg-background">
@@ -32,13 +31,15 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
       </div>
 
       <nav
-        className="px-2 space-y-1"
+        className="px-2 space-y-1 relative"
         onMouseLeave={() => setHoveredComponent(null)}
       >
         {availableComponents.length > 0 ? (
           availableComponents.map((comp) => {
             const isActive = activeComponent === comp.id;
             const isHovered = hoveredComponent === comp.id;
+
+            const showIndicator = isHovered || (isActive && !hoveredComponent);
 
             return (
               <button
@@ -47,38 +48,25 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
                 onMouseEnter={() => setHoveredComponent(comp.id)}
                 className={cn(
                   "relative flex items-center justify-between w-full px-4 py-2.5 rounded-md transition-all duration-200 cursor-pointer mb-1 outline-none group z-10 text-left",
-                  isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "text-accent font-medium" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                {/* 
-                   1. SLIDING HOVER BACKGROUND 
-                   - Solid slide (no fade)
-                 */}
-                {isHovered && (
+                {/* VERTICAL INDICATOR BAR */}
+                {showIndicator && (
                   <motion.div
-                    layoutId="right-hover-pill"
-                    className={cn("absolute inset-0 rounded-md z-[-1]", hoverClass)}
+                    layoutId="right-sidebar-indicator"
+                    className="absolute left-0 w-[2px] bg-accent rounded-r-full h-1/2 top-1/2 -translate-y-1/2 z-20"
+                    initial={false}
                     transition={{
                       type: "spring",
                       stiffness: 500,
-                      damping: 30
+                      damping: 35
                     }}
                   />
                 )}
 
-                {/* 
-                   2. ACTIVE BACKGROUND 
-                */}
-                {isActive && (
-                  <motion.div
-                    layoutId="right-active-pill"
-                    className={cn("absolute inset-0 rounded-md z-[-1]", activeClass)}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-
                 {/* Content */}
-                <span className="relative z-10 text-sm">{comp.label}</span>
+                <span className="relative z-10 text-sm transition-colors">{comp.label}</span>
 
                 {/* Chevron Animation */}
                 {isActive && (
@@ -87,7 +75,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <ChevronRight className="w-3.5 h-3.5 relative z-10 text-primary" />
+                    <ChevronRight className="w-3.5 h-3.5 relative z-10 text-accent" />
                   </motion.div>
                 )}
               </button>
