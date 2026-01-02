@@ -1,17 +1,13 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { Category, ComponentId } from './types';
-import { DecryptDoc } from './components/demos/Buttons/DecryptDemo';
-import { Button3dDemo } from './components/demos/Buttons/Button3dDemo';
-import { ParallaxCardDemo } from './components/demos/Cards/ParallaxCardDemo';
-import { ParallaxGalleryDemo } from './components/demos/Cards/ParallaxGalleryDemo';
-import { AuroraDemo } from './components/demos/Background/AuroraDemo';
-import { ToggleLeft, Terminal, CreditCard, MessageSquare, Layers2, Sparkles } from 'lucide-react';
+import { ToggleLeft, Layers2, Sparkles } from 'lucide-react';
 
 export interface ComponentEntry {
     id: ComponentId;
     label: string;
     category: Category;
-    component: React.FC;
+    component: React.ComponentType<any>;
 }
 
 export interface CategoryMeta {
@@ -36,13 +32,48 @@ export const CATEGORY_METADATA: CategoryMeta[] = [
 // Central definition of all components in the system
 export const COMPONENT_REGISTRY: ComponentEntry[] = [
     // Background
-    { id: ComponentId.AURORA, label: 'Aurora Background', category: Category.BACKGROUND, component: AuroraDemo },
+    {
+        id: ComponentId.AURORA,
+        label: 'Aurora Background',
+        category: Category.BACKGROUND,
+        component: dynamic(() => import('./components/demos/Background/AuroraDemo').then(mod => mod.AuroraDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
     // Action
-    { id: ComponentId.DECRYPT, label: 'Decrypt', category: Category.Buttons, component: DecryptDoc },
-    { id: ComponentId.BUTTON_3D, label: 'Button 3D', category: Category.Buttons, component: Button3dDemo },
+    {
+        id: ComponentId.DECRYPT,
+        label: 'Decrypt',
+        category: Category.Buttons,
+        component: dynamic(() => import('./components/demos/Buttons/DecryptDemo').then(mod => mod.DecryptDoc), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
+    {
+        id: ComponentId.BUTTON_3D,
+        label: 'Button 3D',
+        category: Category.Buttons,
+        component: dynamic(() => import('./components/demos/Buttons/Button3dDemo').then(mod => mod.Button3dDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
     // Cards
-    { id: ComponentId.PARALLAX_GALLERY, label: 'Parallax Gallery', category: Category.CARDS, component: ParallaxGalleryDemo },
-    { id: ComponentId.PARALLAX_CARD, label: 'Parallax Card', category: Category.CARDS, component: ParallaxCardDemo },
+    {
+        id: ComponentId.PARALLAX_GALLERY,
+        label: 'Parallax Gallery',
+        category: Category.CARDS,
+        component: dynamic(() => import('./components/demos/Cards/ParallaxGalleryDemo').then(mod => mod.ParallaxGalleryDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
+    {
+        id: ComponentId.PARALLAX_CARD,
+        label: 'Parallax Card',
+        category: Category.CARDS,
+        component: dynamic(() => import('./components/demos/Cards/ParallaxCardDemo').then(mod => mod.ParallaxCardDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
 ];
 
 const CATEGORY_SLUG_LOOKUP = new Map(

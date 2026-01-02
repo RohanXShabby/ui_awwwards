@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Layers, Github } from 'lucide-react';
 import { Category, ComponentId } from '@/types';
 import { getComponentById } from '@/registry';
@@ -8,7 +9,7 @@ interface ComponentViewProps {
     activeComponent: ComponentId;
 }
 
-export const ComponentView = ({ activeCategory, activeComponent }: ComponentViewProps) => {
+export const ComponentView = memo(({ activeCategory, activeComponent }: ComponentViewProps) => {
     const componentEntry = getComponentById(activeComponent);
 
     // 1. Empty State
@@ -74,4 +75,6 @@ export const ComponentView = ({ activeCategory, activeComponent }: ComponentView
             </footer>
         </div>
     );
-};
+});
+
+ComponentView.displayName = 'ComponentView';

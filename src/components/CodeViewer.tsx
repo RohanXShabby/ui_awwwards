@@ -2,15 +2,23 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Check, Copy, Terminal, ChevronDown, ChevronUp } from 'lucide-react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
+
+// Dynamically import SyntaxHighlighter to reduce initial bundle size
+const SyntaxHighlighter = dynamic(
+    () => import('react-syntax-highlighter').then((mod) => mod.Prism),
+    {
+        ssr: false,
+        loading: () => <div className="h-40 w-full animate-pulse bg-muted/10 rounded-md" />
+    }
+);
 
 interface CodeViewerProps {
     code: string;
     language?: string;
     title?: string;
-    maxHeight?: string; // Optional prop to customize collapsed height
+    maxHeight?: string;
 }
 
 export const CodeViewer: React.FC<CodeViewerProps> = ({
@@ -28,8 +36,6 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
         setMounted(true);
     }, []);
 
-    // Calculate if the code is long enough to need collapsing
-    // You can adjust the threshold (e.g., 10 lines)
     const isExpandable = useMemo(() => {
         const lineCount = code.split('\n').length;
         return lineCount > 10;
@@ -45,11 +51,31 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
         }
     };
 
-    const createTransparentTheme = (baseTheme: any) => {
-        const newTheme = { ...baseTheme };
+    // Prism styles are quite large, so we import them conditionally or just use the objects
+    const [prismStyles, setPrismStyles] = useState<{ dark: any; light: any } | null>(null);
+
+    useEffect(() => {
+        if (mounted) {
+            Promise.all([
+                import('react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus'),
+                import('react-syntax-highlighter/dist/esm/styles/prism/vs'),
+            ]).then(([darkMod, lightMod]) => {
+                setPrismStyles({
+                    dark: darkMod.default,
+                    light: lightMod.default
+                });
+            });
+        }
+    }, [mounted]);
+
+    const transparentTheme = useMemo(() => {
+        if (!prismStyles) return {};
+        const base = resolvedTheme === 'dark' ? prismStyles.dark : prismStyles.light;
+
+        const newTheme = { ...base };
         Object.keys(newTheme).forEach((key) => {
             const style = newTheme[key];
-            if (style.background || style.backgroundColor) {
+            if (style && (style.background || style.backgroundColor)) {
                 const newStyle = { ...style };
                 delete newStyle.background;
                 newStyle.backgroundColor = 'transparent';
@@ -57,17 +83,10 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
             }
         });
         return newTheme;
-    };
-
-    const transparentTheme = useMemo(() => {
-        if (!mounted) return createTransparentTheme(vs);
-        const base = resolvedTheme === 'dark' ? vscDarkPlus : vs;
-        return createTransparentTheme(base);
-    }, [resolvedTheme, mounted]);
+    }, [resolvedTheme, prismStyles]);
 
     return (
         <div className="group relative rounded-md overflow-hidden my-6 transition-colors duration-200 border border-card-border/50 shadow-sm">
-
             {/* Header */}
             {(title || language) && (
                 <div className="flex items-center justify-between px-4 py-3 bg-card-bg/60 backdrop-blur-md border-b border-card-border/50">
@@ -79,7 +98,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
                     </div>
                     <button
                         onClick={handleCopy}
-                        className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-card-border/50 active:scale-95"
+                        className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-card-border/50 active:scale-95 cursor-pointer"
                         title="Copy code"
                     >
                         {copied ? <Check className="w-3.5 h-3.5 text-success" /> : <Copy className="w-3.5 h-3.5" />}
@@ -93,25 +112,27 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
                     ${!isExpanded && isExpandable ? `${maxHeight} overflow-hidden` : ''} 
                     ${isExpandable ? 'pb-10' : ''} 
                 `}>
-                    <SyntaxHighlighter
-                        language={language}
-                        style={transparentTheme}
-                        customStyle={{
-                            margin: 0,
-                            padding: '1.5rem',
-                            backgroundColor: 'transparent',
-                            fontSize: '0.875rem',
-                            lineHeight: '1.5',
-                            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-                        }}
-                        codeTagProps={{
-                            style: { backgroundColor: 'transparent' }
-                        }}
-                        wrapLines={true}
-                        showLineNumbers={false}
-                    >
-                        {code}
-                    </SyntaxHighlighter>
+                    {mounted && prismStyles && (
+                        <SyntaxHighlighter
+                            language={language}
+                            style={transparentTheme}
+                            customStyle={{
+                                margin: 0,
+                                padding: '1.5rem',
+                                backgroundColor: 'transparent',
+                                fontSize: '0.875rem',
+                                lineHeight: '1.5',
+                                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                            }}
+                            codeTagProps={{
+                                style: { backgroundColor: 'transparent' }
+                            }}
+                            wrapLines={true}
+                            showLineNumbers={false}
+                        >
+                            {code}
+                        </SyntaxHighlighter>
+                    )}
                 </div>
 
                 {/* Fade Overlay (Only visible when collapsed) */}
@@ -126,7 +147,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
                             onClick={() => setIsExpanded(!isExpanded)}
                             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium 
                                      bg-card-bg/80 hover:bg-card-bg text-foreground border border-card-border/50 
-                                     rounded-lg backdrop-blur-md shadow-sm transition-all hover:shadow-md"
+                                     rounded-lg backdrop-blur-md shadow-sm transition-all hover:shadow-md cursor-pointer"
                         >
                             {isExpanded ? (
                                 <>

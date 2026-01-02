@@ -17,9 +17,9 @@ export const FeatureCard = ({
         <ComponentPreview
             title=''
             align="start"
-            className="h-full"
+            className="h-full border-none"
         >
-            <div className="font-mono text-xs sm:text-sm w-full overflow-hidden">
+            <div className="font-mono text-xs bg-background/60 h-full sm:text-sm w-full overflow-hidden">
 
                 {/* Line 1: Variable Declaration */}
                 <div className="flex items-start">
