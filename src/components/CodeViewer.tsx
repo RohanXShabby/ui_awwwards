@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { Check, Copy, Terminal, ChevronDown, ChevronUp } from 'lucide-react';
 import dynamic from 'next/dynamic';

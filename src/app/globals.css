@@ -3,23 +3,12 @@
 /* Light Theme (default) */
 :root {
   --color-background: #EFEEEA;
-  /* Base light background */
   --color-foreground: #101010;
-  /* Text color */
   --color-accent: #FE7743;
-  /* Primary accent */
-
-  /* Derived tones */
   --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 60%, var(--color-background));
-  /* softer text */
-  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));
-  /* subtle lift from background */
+  --color-card-bg: color-mix(in srgb, var(--color-background) 80%, var(--color-foreground));
   --color-card-border: color-mix(in srgb, var(--color-foreground) 15%, var(--color-background));
-  /* light neutral border */
   --color-link: color-mix(in srgb, var(--color-accent) 70%, var(--color-foreground));
-  /* accent-tinted link */
-
-  /* Status colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
@@ -28,23 +17,12 @@
 
 .dark {
   --color-background: #101010;
-  /* Base dark background */
   --color-foreground: #EFEEEA;
-  /* Light text */
   --color-accent: #FE7743;
-  /* Same accent for consistency */
-
-  /* Derived tones */
   --color-muted-foreground: color-mix(in srgb, var(--color-foreground) 70%, var(--color-background));
-  /* softer text */
-  --color-card-bg: color-mix(in srgb, var(--color-background) 85%, var(--color-foreground));
-  /* subtle tint */
-  --color-card-border: color-mix(in srgb, var(--color-foreground) 20%, var(--color-background));
-  /* faint border */
+  --color-card-bg: color-mix(in srgb, var(--color-background) 90%, var(--color-foreground));
+  --color-card-border: color-mix(in srgb, var(--color-foreground) 15%, var(--color-background));
   --color-link: color-mix(in srgb, var(--color-accent) 80%, var(--color-foreground));
-  /* vivid link */
-
-  /* Status colors */
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-error: #f87171;
@@ -205,7 +183,6 @@ body::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* Aggressively hide scrollbar buttons (arrows) */
 .custom-scrollbar::-webkit-scrollbar-button,
 .custom-scrollbar::-webkit-scrollbar-button:single-button,
 .custom-scrollbar::-webkit-scrollbar-button:vertical,

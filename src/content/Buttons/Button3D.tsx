@@ -3,19 +3,12 @@
 import React from 'react';
 
 interface Button3DProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Text to display */
   label?: string;
-  /** Width of the button (e.g., "140px", "10rem", "100%") */
   width?: string;
-  /** Height of the button (e.g., "50px", "3rem") */
   height?: string;
-  /** The main face color of the button */
   topColor?: string;
-  /** The 3D side/shadow color */
   bottomColor?: string;
-  /** The border and text color */
   outlineColor?: string;
-  /** Optional: Pass a className for fonts or margins */
   className?: string;
 }
 

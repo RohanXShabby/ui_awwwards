@@ -19,6 +19,7 @@ export enum ComponentId {
     PARALLAX_CARD = 'PARALLAX_CARD',
     DECRYPT = 'DECRYPT',
     BUTTON = 'BUTTON',
+    WAVE_BUTTON = 'WAVE_BUTTON',
     AURORA = 'AURORA',
 }
 

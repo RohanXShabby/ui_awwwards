@@ -22,6 +22,8 @@ const Navbar = () => {
         { name: "Components", href: "/component" },
         { name: "Templates", href: "/template" },
         { name: "Pricing", href: "/pricing" },
+        { name: "Component Test", href: "/componentTest" },
+
     ]
 
     // 🌟 Fetch GitHub Stars

@@ -29,7 +29,6 @@ export const CATEGORY_METADATA: CategoryMeta[] = [
     { id: Category.BACKGROUND, label: 'Background', icon: Sparkles },
 ];
 
-// Central definition of all components in the system
 export const COMPONENT_REGISTRY: ComponentEntry[] = [
     // Background
     {
@@ -54,6 +53,14 @@ export const COMPONENT_REGISTRY: ComponentEntry[] = [
         label: 'Button 3D',
         category: Category.Buttons,
         component: dynamic(() => import('./components/demos/Buttons/Button3dDemo').then(mod => mod.Button3dDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
+    {
+        id: ComponentId.WAVE_BUTTON,
+        label: 'Wave Button',
+        category: Category.Buttons,
+        component: dynamic(() => import('./components/demos/Buttons/WaveTextButtonDemo').then(mod => mod.WaveTextButtonDemo), {
             loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
         })
     },
