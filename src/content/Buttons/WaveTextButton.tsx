@@ -112,7 +112,7 @@ export const WaveTextButton: React.FC<WaveTextButtonProps> = ({
     const variants: Record<ButtonVariant, string> = {
         primary: "bg-accent hover:bg-link text-background border-transparent shadow-sm",
         secondary: "bg-slate-800 text-white hover:bg-slate-900 border-transparent shadow-sm",
-        outline: "bg-transparent border-2 border-slate-200 text-slate-900 hover:border-indigo-600 hover:text-indigo-600",
+        outline: "bg-transparent text-white border-2 border-slate-200 hover:border-indigo-600 hover:text-indigo-600",
         ghost: "bg-transparent text-slate-600 hover:bg-slate-100 border-transparent",
         danger: "bg-red-500 text-white hover:bg-red-600 border-transparent",
         success: "bg-emerald-500 text-white hover:bg-emerald-600 border-transparent"

@@ -60,7 +60,7 @@ export const COMPONENT_REGISTRY: ComponentEntry[] = [
         id: ComponentId.WAVE_BUTTON,
         label: 'Wave Button',
         category: Category.Buttons,
-        component: dynamic(() => import('./components/demos/Buttons/WaveTextButtonDemo').then(mod => mod.WaveTextButtonDemo), {
+        component: dynamic(() => import('./components/demos/Buttons/WaveTextButtonDemo').then(mod => mod.WaveButtonDemo), {
             loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
         })
     },
