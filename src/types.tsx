@@ -21,6 +21,7 @@ export enum ComponentId {
     BUTTON = 'BUTTON',
     WAVE_BUTTON = 'WAVE_BUTTON',
     AURORA = 'AURORA',
+    PULSE_BUTTON = 'PULSE_BUTTON',
 }
 
 export interface ComponentDoc {

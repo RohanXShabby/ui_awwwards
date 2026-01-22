@@ -202,7 +202,7 @@ export default WaveTextButton;
 
             {/* Preview Area */}
             <ComponentPreview>
-                <div className="w-full flex flex-col items-center gap-8">
+                <div className="w-full flex flex-col items-center gap-8 py-16">
                     <div className='w-fit mx-auto text-4xl font-black text-muted-foreground/40 mb-4'>
                         Hover Below
                     </div>
@@ -221,18 +221,6 @@ export default WaveTextButton;
                             </div>
                         </div>
 
-                        {/* Sizes Showcase */}
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Sizes</h3>
-                            <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <WaveTextButton text="Extra Small" size="xs" />
-                                <WaveTextButton text="Small" size="sm" />
-                                <WaveTextButton text="Medium" size="md" />
-                                <WaveTextButton text="Large" size="lg" />
-                                <WaveTextButton text="Extra Large" size="xl" />
-                            </div>
-                        </div>
-
                         {/* Animation Origins */}
                         <div>
                             <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Animation Origins</h3>
@@ -241,71 +229,6 @@ export default WaveTextButton;
                                 <WaveTextButton text="From Center" animationOrigin="center" />
                                 <WaveTextButton text="From Right" animationOrigin="right" />
                                 <WaveTextButton text="From Edges" animationOrigin="edges" />
-                            </div>
-                        </div>
-
-                        {/* Radius Options */}
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Border Radius</h3>
-                            <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <WaveTextButton text="None" radius="none" />
-                                <WaveTextButton text="Small" radius="sm" />
-                                <WaveTextButton text="Medium" radius="md" />
-                                <WaveTextButton text="Large" radius="lg" />
-                                <WaveTextButton text="Full" radius="full" />
-                            </div>
-                        </div>
-
-                        {/* Custom Styling */}
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Custom Colors</h3>
-                            <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <WaveTextButton
-                                    text="Custom Purple"
-                                    bgColor="#8b5cf6"
-                                    textColor="#ffffff"
-                                />
-                                <WaveTextButton
-                                    text="Custom Orange"
-                                    bgColor="#f97316"
-                                    textColor="#ffffff"
-                                />
-                                <WaveTextButton
-                                    text="Custom Pink"
-                                    bgColor="#ec4899"
-                                    textColor="#ffffff"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Animation Speed */}
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Animation Speed</h3>
-                            <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <WaveTextButton
-                                    text="Fast Animation"
-                                    animationDuration={0.2}
-                                    staggerDelay={0.015}
-                                />
-                                <WaveTextButton
-                                    text="Normal Speed"
-                                    animationDuration={0.4}
-                                    staggerDelay={0.03}
-                                />
-                                <WaveTextButton
-                                    text="Slow Animation"
-                                    animationDuration={0.8}
-                                    staggerDelay={0.06}
-                                />
-                            </div>
-                        </div>
-
-                        {/* Special States */}
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted-foreground mb-4 text-center">Special States</h3>
-                            <div className='flex flex-col items-center justify-center gap-4 w-full max-w-md mx-auto'>
-                                <WaveTextButton text="Disabled Button" disabled />
-                                <WaveTextButton text="Full Width Button" fullWidth />
                             </div>
                         </div>
                     </div>

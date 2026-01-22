@@ -64,6 +64,14 @@ export const COMPONENT_REGISTRY: ComponentEntry[] = [
             loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
         })
     },
+    {
+        id: ComponentId.PULSE_BUTTON,
+        label: 'Pulse Button',
+        category: Category.Buttons,
+        component: dynamic(() => import('./components/demos/Buttons/PulseButtonDemo').then(mod => mod.PulseButtonDemo), {
+            loading: () => <div className="h-40 w-full animate-pulse bg-muted rounded-md" />
+        })
+    },
     // Cards
     {
         id: ComponentId.PARALLAX_GALLERY,
