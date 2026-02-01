@@ -42,7 +42,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="fixed top-0 inset-x-0 z-40  flex flex-col items-center pointer-events-none">
+        <nav suppressHydrationWarning className="fixed top-0 inset-x-0 z-40  flex flex-col items-center pointer-events-none">
 
             <div className={cn(
                 "relative flex items-center justify-between bg-background/60 backdrop-blur-2xl pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
@@ -61,7 +61,7 @@ const Navbar = () => {
                     className="text-lg font-bold tracking-tight flex items-center gap-2 text-foreground hover:opacity-80 transition-opacity"
                     onClick={() => setIsOpen(false)}
                 >
-                    <div className="w-5 h-5 rounded bg-linear-to-tr from-accent to-primary" />
+                    <div className="w-5 h-5 rounded bg-linear-to-tr from-accent to-accent/60" />
                     <span className="hidden sm:inline">UI Library</span>
                     <span className="sm:hidden">UI</span>
                 </Link>
@@ -107,28 +107,22 @@ const Navbar = () => {
 
                 {/* Right: Buttons */}
                 <div className="flex items-center gap-3">
+                    {/* Search Bar Placeholder (matching image) */}
+                    <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-muted-foreground w-48 transition-all hover:bg-white/10 group">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <span className="text-xs">Search...</span>
+                    </div>
+
+                    <div className="w-px h-4 bg-white/10 hidden lg:block" />
+
                     <Link
-                        href="https://github.com/your-username/your-repo"
-                        target="_blank"
-                        className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+                        href="/component"
+                        className="hidden md:flex items-center gap-2 px-5 py-2 rounded-md bg-accent text-background font-bold text-sm hover:bg-accent/90 transition-all shadow-lg shadow-accent/20"
                     >
-                        <FaGithub className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">Star</span>
-                        {starCount !== null && (
-                            <>
-                                <div className="w-px h-3 bg-white/10" />
-                                <span className="text-xs font-mono text-muted-foreground group-hover:text-accent transition-colors">
-                                    {formatStars(starCount)}
-                                </span>
-                            </>
-                        )}
+                        Get Started
                     </Link>
-
-                    <Link href="https://github.com" target="_blank" className="sm:hidden text-muted-foreground hover:text-foreground transition-colors">
-                        <FaGithub size={20} />
-                    </Link>
-
-                    <div className="w-px h-4 bg-white/10 hidden sm:block" />
 
                     <ThemeToggle />
 

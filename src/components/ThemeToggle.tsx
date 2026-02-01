@@ -14,7 +14,7 @@ const ThemeToggle: React.FC = () => {
 
     if (!mounted) {
         return (
-            <div className="w-9 h-9" /> // Placeholder to prevent layout shift
+            <button className="w-9 h-9 p-2 opacity-0" aria-label="Loading theme..." />
         );
     }
 
